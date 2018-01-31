@@ -66,7 +66,7 @@ module.exports = {
 
     new ZipPlugin({
       filename: 'theme.zip',
-      pathPrefix: 'theme/2.0.0',
+      pathPrefix: 'theme/1.0.0',
       include: [/\.twig$/, /\.md$/, /\.jpg$/, /\.jpge$/, /\.png$/, /\.ico$/, /\.json$/, '.gitignore', '.editorconfig'],
       exclude: [/\.html$/, /\.css$/, /\.js$/, /\.php$/],
       fileOptions: {
