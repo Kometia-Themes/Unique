@@ -301,7 +301,7 @@ function() {
       error: function(data, textStatus, errorThrown) {
         console.log('message=:'+data+', text status=:'+textStatus+', error thrown:='+errorThrown)
       }})
-    .success(function(){})
+    .done(function(){})
     .done(function(data){});
   }
 
@@ -310,7 +310,7 @@ function() {
     var qty = qty == null ? 1 : qty;
     $.post(ajaxConfig.postUrl,
             {'sku_id':productSku,'quantity':qty})
-    .success(function(data) {
+    .done(function(data) {
       AjaxCart = data.object || {};
       buildAjaxCart(AjaxCart, sku, AjaxCart.items, AjaxCart.total_price);
       extraData = data.extra ? 1 : 0;
