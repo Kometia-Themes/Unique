@@ -1,0 +1,142 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="container margin-top">
+<div class="row">
+  <div class="col-xs-12 section__title">
+    <h1 class="section-heading">{{ settings.cart_title }}</h1>
+    <br>
+    <p>{{ settings.cart_description }}</p>
+  </div>
+</div>
+
+{% if not cart or cart.items|length == 0 %}
+<div class="row cart">
+  <div class="col-sm-12">
+    <p class="lead">No hay productos en el carrito.</p>
+  </div>
+</div>
+{% else %}
+<div class="row cart">
+  <div class="col-sm-12">
+    <table class="table table-responsive cart__resume-table">
+      <thead>
+        <tr>
+          <th class="table__product-description" colspan="2">Producto</th>
+          <th>Cantidad</th>
+          <th class="text-right" colspan="2">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+        <tr>
+          <td class="cart__resume-table__product-image" align="center">
+            {% if item.sku.image_url is not empty %}
+            <a href="/productos/{{ item.product.permalink }}{% if item.sku.permalink != 'default' %}/{{ item.sku.permalink }}{% endif %}"><img class="img-responsive" src="{{ item.sku.image_url }}&w=130" width="130" alt="{{ item.product.name }}"></a>
+            {% elseif item.product.image_url is not empty %}
+            <a href="/productos/{{ item.product.permalink }}{% if item.sku.permalink != 'default' %}/{{ item.sku.permalink }}{% endif %}"><img class="img-responsive" src="{{ item.product.image_url }}&w=130" width="130" alt="{{ item.product.name }}"></a>
+            {% else %}
+            <a href="/productos/{{ item.product.permalink }}{% if item.sku.permalink != 'default' %}/{{ item.sku.permalink }}{% endif %}"><img class="img-responsive" src="{{ 'placeholders/product-11.jpg' | global_img_url }}" width="130" alt="{{ item.product.name }}"></a>
+            {% endif %}
+          </td>
+          <td>
+            <a class="cart__resume-table__product-name" href="/productos/{{ item.product.permalink }}{% if item.sku.permalink != 'default' %}/{{ item.sku.permalink }}{% endif %}">
+              {{ item.product.name }}{% if item.product.modifiers.count > 0 %} - {{ item.sku.name }}{% endif %}
+            </a>
+          </td>
+          <td>
+            <form name="updateQty" action="/carrito/actualizar" method="post">
+              <input type="hidden" name="_method" value="patch">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <select class="cart__resume-table__product-quantity updateQty" name="quantity">
+                {% for qty in 1..5 %}
+                <option value="{{ qty }}"{{ qty == item.quantity ? ' selected="selected"' : null }}>{{ qty }}</option>
+                {% endfor %}
+              </select>
+            </form>
+          </td>
+          <td class="cart__resume-table__product-amount">
+            {{ item.total | money('symbol', 'code') }}
+          </td>
+          <td class="cart__resume-table__product-remove-column" width="5%">
+            <form action="/carrito/eliminar" method="post" class="text-center">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <input type="hidden" name="quantity" value="0">
+              <button type="submit" class="btn btn-link cart__resume-table__product-remove"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="cart-totals">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <form action="/carrito" method="post">
+        {% if settings.enabled_gift_option %}
+          <div class="cartgift__form">
+            <div class="checkbox">
+              <label><input class="cartgift--checkbox" type="checkbox" name="is_gift" value="1" {{ cart.is_gift ? "checked='checked'" : '' }}>{{ settings.gift_title_message }}</label>
+            </div>
+            <div class="cartgift__form--content">
+              <div class="form-group">
+                <label class="sr-only" for="gift_message">{{ settings.gift_title_message }}</label>
+                <textarea type="text" class="form-control" name="gift_message" value="{{ cart.gift_message }}" maxlength="150">{{ cart.gift_message }}</textarea>
+              </div>
+              <button type="submit" class="btn btn-xs btn-primary cartgift__btn">{{ settings.gift_btn_message }}</button>
+            </div>
+          </div>
+        {% endif %}
+        {% if settings.enabled_customer_note_option %}
+        <hr>
+          <p>{{ settings.customer_title_note }}</p>
+          <div class="cartnote__form">
+            <div class="form-group">
+              <label class="sr-only" for="note">{{ settings.customer_title_note }}</label>
+              <textarea class="form-control cartnote__note" type="textarea" name="note" value="{{ cart.customer_note }}" maxlength="500">{{ cart.customer_note }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-xs btn-primary cartnote__btn">{{ settings.customer_btn_note_text }}</button>
+          </div>
+        {% endif %}
+      </form>
+    </div>
+    <div class="col-sm-12 col-md-6 text-right">
+      <h3 class="cart-total-row__title">TOTAL {{ cart.total_price | money('symbol', 'code') }}</h3>
+      {% if store.is_tax_included %}
+      <p>IVA Incluído</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row go-payment">
+  <div class="col-sm-12">
+    <div class="pull-left go-payment__buy-more">
+      <a href="/productos" class="btn btn-lg text-uppercase">{{ settings.cart_btn_more_text }}</a>
+    </div>
+    <div class="pull-right go-payment__buy-now">
+      <a href="/checkout" class="btn btn-lg text-uppercase">{{ settings.cart_btn_buy_text }}</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block body_js %}
+{{ parent() }}
+  <script type="text/javascript">
+  $(function () {
+    $('.updateQty').change(function() {
+      this.form.submit();
+    });
+    $('form').submit(function(){
+      $(this).find(':submit').prop('disabled', true);
+    });
+  });
+  </script>
+{% endblock %}

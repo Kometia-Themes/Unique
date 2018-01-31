@@ -1,0 +1,69 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+{% if collections | length > 0 %}
+ <div class="container margin-top">
+  <div class="row">
+    <div class="col-xs-12 section__title">
+      <h1 class="section-heading">{{ page_title }}</h1>
+    </div>
+  </div>
+</div>
+  <div class="collections">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 collections__cards">
+          {% set elements = collections | length %}
+          {% if elements is divisible by(2) and elements is not divisible by(3) %}
+            {% set divisor = 2 %}
+            {% set column1 = 6 %}
+            {% set column2 = 6 %}
+          {% elseif elements is not divisible by(2) and elements is divisible by(3) %}
+            {% set divisor = 3 %}
+            {% set column1 = 4 %}
+            {% set column2 = 4 %}
+          {% elseif elements is divisible by(2) and elements is divisible by(3) and elements is not divisible by(9) %}
+            {% set divisor = 2 %}
+            {% set column1 = 6 %}
+            {% set column2 = 6 %}
+          {% elseif elements is not divisible by(2) and elements is divisible by(3) and elements is divisible by(9)%}
+            {% set divisor = 3 %}
+            {% set column1 = 4 %}
+            {% set column2 = 4 %}
+          {% else %}
+            {% set divisor = 3 %}
+            {% set column1 = 4 %}
+            {% set column2 = 4 %}
+          {% endif %}
+
+          {% for collections_row in collections | batch(divisor) %}
+          <div class="row collection__grid collection__layout__2-items no-gutter">
+            {% for collection in collections_row %}
+            <div class="col-xs-12 col-sm-{{ column1 }} col-md-{{ column2 }} no-gutter">
+              {% if collection.image_url is not null %}
+                {% set style = ' style="background-image: url(\'' ~ collection.image_url ~ '&w=570&h=570&fit=crop\');"' %}
+                {% set class = ' collection__item--with_image' %}
+              {% else %}
+                {% set style = null %}
+                {% set class = ' collection__item--no_image' %}
+              {% endif %}
+              <div class="collection__item collection__item--rectangle{{ class }}" {{ style }}>
+                <div class="collection__item__overlay">
+                  <a href="/colecciones/{{ collection.permalink }}" class="collection__item__title">
+                    <span class="collection__item--link">{{ collection.title }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+             {% endfor %}
+            </div>
+         {% endfor %}
+        </div>
+      </div>
+      {% include '_pagination.twig' %}
+    </div>
+  </div>
+  {% else %}
+   {% include '_collection-placeholder.twig' %}
+  {% endif %}
+{% endblock %}

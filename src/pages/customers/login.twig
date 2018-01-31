@@ -1,0 +1,60 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-sm-12 section__title section-title--margin">
+      <h1 class="section-heading">Iniciar Sesión</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {% form 'customer_login' 'role="form" class="login-form"' %}
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Correo electrónico" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Contraseña" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="remember">&nbsp;Recordarme
+                </label>
+              </div>
+            <div class="form-group">
+              <a href="/cuenta/recuperar">¿Olvidaste tu contraseña?</a>
+            </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <input class="btn btn-action btn-block login-form__button" type="submit" name="submit" id="submit" value="&nbsp; Iniciar sesión &nbsp;">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="form-group text-center">
+              ¿No tienes cuenta?
+            </div>
+            <div class="form-group">
+              <a href="/cuenta/registro" class="btn btn-action btn-block login-form__button">Crear cuenta</a>
+            </div>
+          </div>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+{% endblock %}

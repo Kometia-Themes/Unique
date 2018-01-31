@@ -1,0 +1,50 @@
+{% if settings.slide_1 or settings.slide_2 or settings.slide_3 %}
+<div class="slider-home slider">
+  {% for i in 1..3 %}
+    {% set slideType = '' %}
+    {% set slide = 'slide_'~i %}
+    {% if settings.slide_bg_cover_type %}
+    {% set slideType = 'cover-slider' %}
+    {% endif %}
+    {% if settings[slide] %}
+      {% if settings['slide_'~i~'_img_background'] is not empty and settings['slide_'~i~'_img_background'] is defined %}
+        {% set slide_bg = settings['slide_'~i~'_img_background'] %}
+        <div class="slide {{ slide }} {{ slideType }}" style="background-image: url('{{ settings['slide_'~i~'_img_background'] }}&w=1400&h=868&fit=crop');">
+      {% else %}
+        <div class="slide {{ slide }}">
+      {% endif %}
+      <div class="arrow-container-left">
+        <a class="arrow-element left-arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+      </div>
+      <div class="arrow-container-right">
+        <a class="arrow-element right-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      </div>
+        <div class="container-fluid">
+          {% if settings.slider_has_overlay %}
+          <div class="slider_overlay"></div>
+          {% endif %}
+          <div class="row">
+            <div class="col-sm-12 slide{{i}}">
+              <div class="slider_content_outher">
+                <div class="slider_content_inner">
+                  {% if settings['slide_'~i~'_title'] is not empty %}
+                  <h1 class="title title__big">{{ settings['slide_'~i~'_title'] }}</h1>
+                  {% endif %}
+                  {% if settings['slide_'~i~'_title'] is not empty %}
+                  <h2 class="title title__medium title--uppercase">{{ settings['slide_'~i~'_description'] }}</h2>
+                  {% endif %}
+                  {% if settings['slide_'~i~'_btn'] and settings['slide_'~i~'_btn_text'] is not empty and settings['slide_'~i~'_btn_buy_link'] is not empty %}
+                    <a class="btn btn-base btn__slide {% if settings['slider_text_has_overlay'] %}btn__slide--shadow{% endif %}" href="{{ settings['slide_'~i~'_btn_buy_link'] }}">{{ settings['slide_'~i~'_btn_text'] }}</a>
+                  {% elseif settings['slide_'~i~'_btn'] and settings['slide_'~i~'_btn_text'] is empty and settings['slide_'~i~'_btn_buy_link'] is not empty %}
+                    <a class="slide_static_button" href="{{ settings['slide_'~i~'_btn_buy_link'] }}">{{ settings['slide_'~i~'_btn_text'] }}</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}

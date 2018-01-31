@@ -1,0 +1,96 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-push-6 col-md-3 col-md-push-9 newsletter-foo">
+      {% if settings.footer_display_contact_data %}
+        <h3 class="newsletter-foo--title newsletter-foo__size newsletter-foo--title-color">Contacto</h3>
+        <p class="newsletter-foo--body-color">{{ settings.footer_contact_data | nl2br }}</p>
+      {% endif %}
+      <h3 class="newsletter-foo--title newsletter-foo__size newsletter-foo--title-color">{{ settings.footer_mailing_list_title }}</h3>
+      <p class="newsletter-foo--body-color">{{ settings.footer_mailing_list_text }}</p>
+      {% form 'newsletter' %}
+        <div class="input-group newsletter-foo--input-group">
+          <input type="email" name="newsletter" class="form-control newsletter-foo--input" id="newsletter"  placeholder="Escribe tu email aquì" required>
+          <button type="submit" class="btn btn-default newsletter-foo__button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+        </div>
+      {% endform %}
+      </div>
+      <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-md-9 col-md-pull-3">
+        <div class="row main-menu-foo">
+        {% if settings.footer_first_display_menu %}
+          {% include "_nav-footer.twig" with {
+            'order' : settings.footer_first_menu,
+            'title' : settings.footer_first_title_menu,
+            'policy_url': settings.policy_url
+          } %}
+        {% endif %}
+        {% if settings.footer_second_display_menu %}
+          {% include "_nav-footer.twig" with {
+            'order' : settings.footer_second_menu,
+            'title' : settings.footer_second_title_menu
+          } %}
+        {% endif %}
+        {% if settings.footer_third_display_menu %}
+          {% include "_nav-footer.twig" with {
+            'order' : settings.footer_third_menu,
+            'title' : settings.footer_third_title_menu
+          } %}
+        {% endif %}
+        {% if settings.footer_fourth_display_menu %}
+          {% include "_nav-footer.twig" with {
+            'order' : settings.footer_fourth_menu,
+            'title' : settings.footer_fourth_title_menu
+          } %}
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          {% if settings.footer_display_social %}
+            {% include '_social-icons.twig' %}
+          {% endif %}
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3 col-md-push-6 col-sm-push-4">
+          <ul class="list-inline icons payment-footer margin--bottom">
+          {% if settings.footer_display_payment_methods %}
+            {% if settings.accept_visa %}
+            <li><img src="{{ 'visa.png'| payment_img_url }}" alt="Visa"></li>
+            {% endif %}
+            {% if settings.accept_mastercard %}
+            <li><img src="{{ 'mastercard.png'| payment_img_url }}" alt="Mastercard"></li>
+            {% endif %}
+            {% if settings.accept_amex %}
+            <li><img src="{{ 'amex.png'| payment_img_url }}" alt="American Express"></li>
+            {% endif %}
+            {% if settings.accept_paypal %}
+            <li><img src="{{ 'paypal.png'| payment_img_url }}" alt="Paypal"></li>
+            {% endif %}
+            {% if settings.accept_oxxo %}
+            <li><img src="{{ 'oxxo.png'| payment_img_url }}" alt="oxxo"></li>
+            {% endif %}
+            {% if settings.accept_spei %}
+            <li><img src="{{ 'spei.png'| payment_img_url }}" alt="spei"></li>
+            {% endif %}
+            {% if settings.accept_cash %}
+            <li><img src="{{ 'cash.png'| payment_img_url }}" alt="Efectivo"></li>
+            {% endif %}
+          {% endif %}
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-6 col-sm-pull-4 col-md-pull-3 legal text-center">
+        <p class="policy-foo">&copy;2016 {{ store.name | title }}
+          {% if settings.policy_url is not empty %}
+           <span class="hidden-xs"> &nbsp;|&nbsp; </span><a href="/paginas/{{ settings.policy_url }}">Aviso de privacidad</a>
+          {% endif %}
+          <br class="visible-xs"><span class="hidden-xs"> &nbsp;|&nbsp; </span> Tienda creada con <a class="submenu__link--color" href="https://www.shoperti.com"><strong>Shoperti</strong></a>
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

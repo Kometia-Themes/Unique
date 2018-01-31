@@ -1,0 +1,20 @@
+{% if category is defined %}
+  {% if category.children | length > 0 %}
+    <li class="sidebar__item">
+      <a class="sidebar__list-title" href="/categorias/{{ category.permalink }}">{{ category.title }}</a>
+      <a class="sidebar__list-toggle"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+    <ul class="sidebar__submenu {% if category.permalink == current.permalink %}active{% endif %}">
+    {% for sub_category in category.children %}
+      {% include '_category_tree_item.twig' with {
+        'category' : sub_category,
+        'current'  : current
+      } only %}
+    {% endfor %}
+    </ul>
+    </li>
+  {% else %}
+    <li class="sidebar__item">
+      <a class="sidebar__list-title" href="{{ category.permalink }}">{{ category.title }}</a>
+    </li>
+  {% endif %}
+{% endif %}

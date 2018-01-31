@@ -1,0 +1,67 @@
+.navbar.navbar-filters {
+  .navbar-form {
+    background-color: transparent;
+    margin-top: 0;
+    text-align: right;
+  }
+  .form-group {
+    background-color: transparent;
+  }
+  .filter_alph {
+    background-color: transparent;
+  }
+  .filter_date {
+    background-color: transparent;
+  }
+  .filter_price {
+    background-color: transparent;
+  }
+  button.btn {
+    background-color: transparent;
+  }
+}
+
+// Filter inside breadcrumb
+.nav-breadcrumb {
+  form.filters {
+    display: inline;
+    float: right;
+    line-height: 0;
+    margin: 0;
+    padding: 8px 0 0px;
+    ul.breadcrumb-filters {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    select.form-control {
+      height: 31px;
+    }
+    .filters__btn,
+    .filters__btn:hover,
+    .filters__btn:focus {
+      background: transparent;
+    }
+    .filters__btn {}
+    .filter_alph,
+    .filter_date,
+    .filter_price {}
+    .filter_alph {}
+    .filter_date {}
+    .filter_price {}
+  }
+}
+
+form.filters {
+  text-align: right;
+}
+
+.sidebar__content {
+  form.filters {
+    text-align: left;
+    div.btn-group.bootstrap-select.filter_order.form-control {
+      margin-bottom: 8px;
+    }
+  }
+}

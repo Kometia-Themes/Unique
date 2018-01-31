@@ -1,0 +1,11 @@
+{% if menu_item.children | length > 0 %}
+  {% for child in menu_item.children %}
+    {% include "_nav-footer-children.twig" with { 'menu_item' : child } %}
+  {% endfor %}
+{% else %}
+<li class="menu-foo-link">
+  <a class="submenu__link--color" href="{{ menu_item.url }}">
+  {{ menu_item.name }}
+  </a>
+</li>
+{% endif %}

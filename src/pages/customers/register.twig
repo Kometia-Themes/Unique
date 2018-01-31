@@ -1,0 +1,68 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-sm-12 section__title section-title--margin">
+      <h1 class="section-heading">Crea una cuenta</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {% form 'customer_register' 'role="form" class="login-form"' %}
+        <div class="row">
+          <div class="col-x-12">
+            <h4 class="text-center">¿Eres un nuevo cliente? Empieza Aqui</h4>
+            <br/>
+          </div>
+          <div class="col-sm-6 col-md-4 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="text" class="form-control input-lg" id="first_name" name="first_name" placeholder="Nombre" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="text" class="form-control input-lg" id="last_name" name="last_name" placeholder="Apellido" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row margin-bottom">
+          <div class="col-sm-6 col-md-4 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Correo electrónico" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="form-group">
+              <div class="input-group input-group-lg login-form__input">
+                <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Contraseña" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="form-group">
+              <input class="btn btn-action btn-block login-form__button" type="submit" name="submit" id="submit" value="&nbsp; Crear cuenta &nbsp;">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="form-group text-center">
+              ¿Ya tienes cuenta?
+            </div>
+            <div class="form-group">
+              <a href="/cuenta/login" class="btn btn-action btn-block login-form__button">Iniciar sesión</a>
+            </div>
+          </div>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+{% endblock %}

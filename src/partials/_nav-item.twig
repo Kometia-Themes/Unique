@@ -1,0 +1,17 @@
+{% set isLast = loop.index > 5 %}
+{% if link.children | length > 0 %}
+  <li class="main-menu_dropdown">
+  <a class="multi" tabindex="-1">{{ link.name }} <i class="fa fa-caret-right arrow-right" aria-hidden="true"></i></a>
+  <ul class="main-menu_menu{% if loop.length > 6 and loop.last or isLast %} last{% endif %}">
+    {% for children in link.children %}
+      {% include '_nav-item.twig' with {'link': children} %}
+    {% endfor %}
+  </ul>
+</li>
+{% else %}
+<li class="main-menu__item">
+  <a class="main-menu__link" href="{{ link.url }}">
+    {{ link.name }}
+  </a>
+</li>
+{% endif %}

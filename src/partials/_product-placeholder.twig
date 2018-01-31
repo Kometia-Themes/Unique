@@ -1,0 +1,13 @@
+{% set image_url = 'placeholders/product-11.jpg' | global_img_url %}
+{% set extra_class = 'product-card__no-image' %}
+<div class="product-card">
+  <div class="product-card__image product-card__background image_landscape {{ extra_class }}" style="background-image: url({{ image_url }});">
+    <h5 class="product-card__title">
+      <a class="product-card__thumb-link" href="#">Sample Product<br /><i class="fa fa-shopping-basket basket-thumbnail" aria-hidden="true"></i></a>
+    </h5>
+  </div>
+  <div class="product-card__description">
+    <p class="product-card__title"><a href="#">Sample Product</a></p>
+    <p class="product-card__price"> <span class="final-price">{{ 12340 | money('symbol', 'code') }}</span></p>
+  </div>
+</div>

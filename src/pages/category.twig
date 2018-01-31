@@ -1,0 +1,90 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-xs-12 section__title">
+      <h1 class="section-heading">{{ category.title | capitalize }}</h1>
+    </div>
+  </div>
+    <div class="row">
+    {% set has_categories = categories | length > 0 %}
+    {% if has_categories %}
+    <div class="col-md-3 categories-filter">
+      <div class="sidebar">
+        <h4>Categorías</h4>
+        <div class="sidebar__content">
+        {% if settings.orderby_name or settings.orderby_created or settings.orderby_price %}
+        <form name="filters" class="filters" role="filters">
+          <select name="sort_by" id="sort_by" class="filter_order selectpicker form-control" data-width="220px">
+            <option value="no-order" disabled selected>Ordenar por</option>
+            {% if settings.orderby_name %}
+            <option value="name-ascending">{{ settings.orderby_name_ascending_text }}</option>
+            <option value="name-descending">{{ settings.orderby_name_descending_text }}</option>
+            {% endif %}
+            {% if settings.orderby_created %}
+            <option value="created-ascending">{{ settings.orderby_created_ascending_text }}</option>
+            <option value="created-descending">{{ settings.orderby_created_descending_text }}</option>
+            {% endif %}
+            {% if settings.orderby_price %}
+            <option value="price-ascending">{{ settings.orderby_price_ascending_text }}</option>
+            <option value="price-descending">{{ settings.orderby_price_descending_text }}</option>
+            {% endif %}
+          </select>
+        </form>
+        {% endif %}
+          {% for categoryElement in categories %}
+            {% include '_category_tree_item.twig' with {
+              'category' : categoryElement,
+              'current'  : category
+            } only %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="{% if has_categories %}col-md-9{% else %}col-md-12{% endif %}">
+    {% if products.count == 0 %}
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <p>Lo sentimos, no hay productos que conicidan con su búsqueda.</p>
+        </div>
+      </div>
+    {% else %}
+      <div class="row">
+        <div class="col-xs-12 featured-products">
+          {% for products_row in products | batch(4) %}
+          <div class="row">
+            {% for product in products_row %}
+              <div class="col-xs-6 col-sm-6 col-md-3">
+                {% include "_product-card.twig" %}
+              </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% include '_pagination.twig' %}
+
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block body_js %}
+{{ parent() }}
+<script type="text/javascript">
+  $(function() {
+    $(".sidebar__list-toggle").click(function(e){
+      e.preventDefault();
+      $(this).children(".fa").toggleClass('fa-chevron-up fa-chevron-down');
+      $(this).next(".categories-filter .sidebar__submenu").slideToggle( "slow", function() {
+        $(this).parents().closest().find(".fa").css({'color':'red'});
+      });
+    });
+  });
+</script>
+{% endblock %}

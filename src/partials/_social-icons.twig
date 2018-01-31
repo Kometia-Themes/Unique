@@ -1,0 +1,29 @@
+  <ul class="list-inline icons social-icons margin--bottom">
+  {% if settings.facebook_link is not empty %}
+    <li><a href="{{ settings.facebook_link }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.twitter_link is not empty %}
+    <li><a href="{{ settings.twitter_link }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.google_link is not empty %}
+    <li><a href="{{ settings.google_link }}" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.pinterest_link is not empty %}
+    <li><a href="{{ settings.pinterest_link }}" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.instagram_link is not empty %}
+    <li><a href="{{ settings.instagram_link }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.youtube_link is not empty %}
+    <li><a href="{{ settings.youtube_link }}" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.vimeo_link is not empty %}
+    <li><a href="{{ settings.vimeo_link }}" target="_blank"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.tumblr_link is not empty %}
+    <li><a href="{{ settings.tumblr_link }}" target="_blank"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
+  {% endif %}
+  {% if settings.whatsapp_link is not empty %}
+    <li><a href="tel:{{ settings.whatsapp_link }}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+  {% endif %}
+</ul>

@@ -1,0 +1,61 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+{% include '_breadcrumb.twig' with { breadcrumb_type: 'products', title: 'Productos', blog_url: '', filter: true } %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 section__title">
+      <h1 class="section-heading">{{ page_title }}</h1>
+    </div>
+  </div>
+
+  {% if products.count == 0 %}
+  <div class="container margin-top placeholder-hover">
+    <div class="placeholder-helper">
+      <div class="placeholder-info text-center">
+        <h3>¡Falta poco!</h3>
+        <p>Todavía no existen Productos disponibles, una vez que empieces a crearlos aparecerán aquí.</p>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <p><a href="/admin/products" class="btn btn-placeholder">Gestionar Productos</a>
+            <a href="/admin/collections" class="btn btn-placeholder">Gestionar Colecciones</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row front__collections__grid">
+      <div class="col-xs-6 col-sm-4">
+        {% include '_product-placeholder.twig' with { number: 1 } %}
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        {% include '_product-placeholder.twig' with { number: 2 } %}
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        {% include '_product-placeholder.twig' with { number: 3 } %}
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        {% include '_product-placeholder.twig' with { number: 4 } %}
+      </div>
+      <div class="col-xs-6 col-sm-4 hidden-xs">
+        {% include '_product-placeholder.twig' with { number: 5 } %}
+      </div>
+      <div class="col-xs-6 col-sm-4 hidden-xs">
+        {% include '_product-placeholder.twig' with { number: 6 } %}
+      </div>
+    </div>
+  </div>
+  {% else %}
+
+  <div class="row symmetrical-container">
+      {% for product in products %}
+        <div class="col-xs-6 col-sm-3 symmetrical">
+          {% include '_product-card.twig' %}
+        </div>
+      {% endfor %}
+  </div>
+
+  {% include '_pagination.twig' %}
+  {% endif %}
+</div>
+
+{% endblock %}

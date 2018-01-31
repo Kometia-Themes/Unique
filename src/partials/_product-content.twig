@@ -1,0 +1,101 @@
+{% include '_breadcrumb.twig' with { breadcrumb_type: 'product', title: 'Productos', blog_url: '', subtitle: product.name | title } %}
+
+<div class="product-single">
+  <div class="container margin-top">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="main-product">
+        {% if product.images | length == 0 %}
+        <img src="{{ 'placeholders/product-15.jpg' | global_img_url }}" alt="{{ product.name }}" id="zoom">
+        {% else %}
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" id="zoom">
+        {% endif %}
+        </div>
+        {# Loop for Slider Nav #}
+        {% if product.images | length > 1 %}
+        <div class="carousel-container">
+          <div class="slider-product js-slider">
+            {% for thumbnail in product.images %}
+            <div class="slider-product__item">
+              <img class="slider-product--image" src="{{ thumbnail.url }}" alt="{{ product.name }}">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-sm-6">
+        <h1 class="product-single__name">{{ product.name }}</h1>
+        {% if not product.is_in_stock %}<span class="label label-danger">Agotado</span>{% endif %}
+          {% if settings.show_vendor_name and product.vendor_name is not empty %}
+            <p class="vendor">Marca: <strong>{{ product.vendor_name }}</strong></p>
+          {% endif %}
+        <div class="product-single__price" id="js-price-preview">
+          <del class="compared-price"><span class="inner">{{ product.compared_price is defined ? product.compared_price | money('symbol', 'code') : '' }}</span></del><br>
+          <span class="product-price-data-price">{{ product.price | money('symbol', 'code') }}</span>
+        </div>
+        <div class="product-price-data">
+          <form class="product_selection" action="/carrito/agregar" method="post">
+          <input type="hidden" name="sku_id" value="{{ product.sku.id }}" id="js-sku-id">
+          <div class="row">
+            {% for attribute, attribute_variants in product.skus_modifiers %}
+              {% set step = loop.index - 1 %}
+              {% set default_variant = product.sku.modifiers[step] %}
+            <div class="col-xs-12 col-md-6">
+              <div class="product__vars">
+                <h5 class="product__heading">{{ attribute }}</h5>
+                <select id="{{ attribute |lower}}" class="selectpicker js-variant-select" title="Elegir {{ attribute }}" name="{{ loop.index0 }}" id="{{ loop.index0 }}">
+                  {% for variant in attribute_variants %}
+                  <option value="{{ variant }}" {% if default_variant == variant %}selected="selected"{% endif %}>{{ variant }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="col-xs-12 col-md-6">
+              <div class="product__vars">
+                <h5 class="product__heading">Cantidad</h5>
+                <select class="selectpicker" title="Cantidad de producto" name="quantity" id="quantity">
+                  {% for qty in 1..5 %}
+                  <option value="{{ qty }}" {{ qty == item.quantity ? ' selected="selected"' : 'null' }}>{{ qty }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-top product__btn">
+            <div class="col-xs-12 col-md-6">
+            {% if product.is_in_stock %}
+              <a class="btn btn-primary btn-lg js-add-to-cart" id="js-add-to-cart">
+              <i class="fa fa-cart-plus"></i>
+              Añadir al carrito
+              </a>
+            {% else %}
+              <a class="btn btn-primary btn-lg js-add-to-cart-disabled" disabled="disabled">
+              No disponible
+              </a>
+            {% endif %}
+            </div>
+          </div>
+          {% if product.description is not empty %}
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="product__description">
+                {{ product.description }}
+              </p>
+            </div>
+          </div>
+          {% endif %}
+        </form>
+        {% if settings.enable_share_products %}
+        <hr>
+        <div class="product__social-share margin-top">
+          {% include '_social-share.twig' %}
+        </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

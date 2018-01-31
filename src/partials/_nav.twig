@@ -1,0 +1,155 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Menú</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% if settings.use_logo %}
+        <a class="navbar-brand brand-logo--mini visible-xs" href="/">
+        <img src="{{ settings['nav_logo'] }}" alt="{{ store.name }}" class="img-responsive brand-logo size-mini">
+      {% else %}
+        <a class="navbar-brand brand-logo-text visible-xs" href="/">
+       {{ store.name }}
+      {% endif %}
+      </a>
+    </div>
+  </div>
+  <div id="navbar" class="collapse navbar-collapse">
+    <div class="topnav second-menu">
+      <div class="container">
+        {% if settings.use_logo and settings.nav_inverse_logo is not empty %}
+        <a class="navbar-brand brand-logo--second visible-sm" href="/">
+          <img src="{{ settings.nav_inverse_logo }}" alt="{{ store.name }}" class="size-mini second-logo">
+        {% else %}
+        <a class="navbar-brand brand-logo--second brand-logo-text visible-sm" href="/">
+          {{ store.name | title }}
+        {% endif %}
+        </a>
+        {% include '_search_form.twig' with { 'class' : 'top-search', 'visibility' : 'visible-sm' } %}
+        <ul class="nav navbar-nav hidden-xs hidden-sm topnav__menu">
+        {% for menu_item in attribute(menus, settings.top_second_nav) %}
+          {% if menu_item | length > 0 %}
+            <li class="navbar-link topnav-menu__link">
+              <a href="{{ menu_item.url }}" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-right link-small" aria-hidden="true"></i> {{ menu_item.name }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right hidden-xs topnav__menu">
+        {% if store.customer_accounts_enabled_or_optional %}
+          {% if customer %}
+            <li class="user user_account user--logout">
+              <a class="user" href="/cuenta/logout" data-toggle="tooltip" title="Salir">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="user user_account user--login">
+              <a class="user" href="/cuenta" data-toggle="tooltip" title="Mi Cuenta">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              </a>
+            </li>
+          {% else %}
+          <li class="user user_account user--login">
+            <a class="user" href="/cuenta/login" data-toggle="tooltip" title="Acceder" >
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="user user_account user--login">
+            <a class="user" href="/cuenta/registro" data-toggle="tooltip" title="Registrarse" >
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% endif %}
+        {% endif %}
+
+        {% if cart.total_items > 0 %}
+          <li class="shopping-cart active">
+            <a class="user" href="/carrito/" data-toggle="tooltip" title="Carrito" >
+              <i class="fa fa-shopping-cart cart--active" aria-hidden="true"></i><sup class="cart-notification cart--active">{{ cart.total_items }}</sup>
+            </a>
+          </li>
+        {% else %}
+          <li class="shopping-cart">
+            <a class="user" href="/carrito/" data-toggle="tooltip" title="0" >
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart-notification cart--empty">0</sup>
+            </a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="main-nav">
+      <div class="container main-nav__position">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 text-center hidden-xs hidden-sm main-navbar">
+          {% if settings.use_logo %}
+          <a class="navbar-brand main--nav_logo" href="/">
+            <img class="main-logo-img" src="{{ settings.nav_logo }}" alt="{{ store.name }}">
+          {% else %}
+          <a class="navbar-brand main--nav_logo logo-text" href="/">
+            {{ store.name }}
+          {% endif %}
+          </a>
+        </div>
+        {% include '_search_form.twig' with { 'class' : 'col-xs-12 col-md-3 main-search', 'visibility' : 'hidden-sm' } %}
+      </div>
+        <ul class="nav navbar-nav topnav-menu">
+        {% for link in menus.main %}
+          {% if link.children | length > 0 %}
+            {% include '_nav-item.twig' %}
+          {% else %}
+            <li class="main-menu__link-item">
+              <a class="main-menu__link" href="{{ link.url }}">
+                {{ link.name }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if store.customer_accounts_enabled_or_optional %}
+          {% if customer %}
+            <li class="visible-xs visible-sm topnav-menu__link">
+              <a class="topnav-menu--color" href="/cuenta/logout">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>Salir
+              </a>
+            </li>
+            <li class="visible-xs visible-sm topnav-menu__link">
+              <a class="topnav-menu--color" href="/cuenta">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>Mi Cuenta
+              </a>
+            </li>
+          {% else %}
+          <li class="visible-xs visible-sm topnav-menu__link">
+            <a class="topnav-menu--color" href="/cuenta/login">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>Acceder
+            </a>
+          </li>
+          <li class="visible-xs visible-sm topnav-menu__link">
+            <a class="topnav-menu--color" href="/cuenta/registro">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>Registrarse
+            </a>
+          </li>
+          {% endif %}
+        {% endif %}
+        {% if cart.total_items > 0 %}
+          <li class="visible-xs visible-sm topnav-menu__link">
+            <a class="topnav-menu--color" href="/carrito/">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart-notification cart--empty">{{ cart.total_items }}</sup>Carrito
+            </a>
+          </li>
+        {% else %}
+          <li class="visible-xs visible-sm topnav-menu__link">
+            <a class="topnav-menu--color" href="/carrito/">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart-notification cart--empty">0</sup>Carrito
+            </a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

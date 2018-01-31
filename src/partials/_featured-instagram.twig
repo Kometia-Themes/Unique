@@ -1,0 +1,16 @@
+{% if settings.instagram_id and settings.instagram_token %}
+<div class="container margin-bottom">
+  <div class="row">
+    <div class="col-sm-12 section__title">
+      <h2 class="section-heading">{{ settings.instagram_title }}</h2>
+    </div>
+  </div>
+  <div class="instagram-container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="instagram"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

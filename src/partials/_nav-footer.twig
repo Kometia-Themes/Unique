@@ -1,0 +1,31 @@
+<div class="col-xs-6 col-sm-6 col-md-3 menu-foo">
+  {% if title is not empty %}
+  <h3 class="menu-foo--title menu-foo__size menu-foo--title-color">
+    {{ title }}
+  </h3>
+  {% endif %}
+  <ul class="menu-foo menu-foo--body-color">
+    {% if attribute(menus, order) is not empty %}
+      {% for menu_item in attribute(menus, order) %}
+        {% if menu_item.children | length >= 1 %}
+        <li class="menu-foo-link">
+          <a href="{{ menu_item.url }}" role="button" aria-haspopup="true" aria-expanded="false" class="submenu-link submenu__link--color">
+          {{ menu_item.name }}
+          </a>
+          {% if menu_item.children | length > 0 %}
+            {% for child in menu_item.children if child.name is not empty  %}
+              {% include "_nav-footer-children.twig" with { 'menu_item' : child } %}
+            {% endfor %}
+        {% endif %}
+        </li>
+        {% elseif menu_item.name is not empty %}
+        <li class="menu-foo-link">
+          <a class="submenu__link--color" href="{{ menu_item.url }}">
+          {{ menu_item.name }}
+          </a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</div>

@@ -1,0 +1,31 @@
+{% set blog = blogs[settings.featured_blog] %}
+{% set posts = blog.posts | slice(0, 3) %}
+
+{% if blog | length > 0 and blogs[settings.featured_blog] is not empty and posts | length > 0 %}
+  <div class="container margin-bottom">
+    <div class="row">
+      <div class="col-xs-12 section__title">
+        <h2 class="section-heading">{{ settings.featured_blog_title | title }}</h2>
+      </div>
+    </div>
+    <div class="row front__blog__grid">
+      {% for post in posts %}
+      <div class="col-xs-12 col-sm-4">
+        <div class="blog-grid-item">
+            {% if post.image_url is not null %}
+          <a class="blog-grid-item__thumb-link grid-item__thumb-image " href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}" style="background-image: url('{{ post.image_url }}&w=370&h=240&fit=crop');">
+            {% else %}
+          <a class="blog-grid-item__thumb-link grid-item__thumb-no-image " href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">
+            {% endif %}
+          </a>
+          <h5 class="blog-grid-item__title">
+            <a href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">{{ post.title | escape }}</a>
+          </h5>
+          <p class="blog-grid-item__summary">{{ post.summary | truncate_words(30) }}</p>
+          <a href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}" class="btn blog-read-more">Leer más</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

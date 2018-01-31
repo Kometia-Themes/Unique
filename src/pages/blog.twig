@@ -1,0 +1,53 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+{% include '_breadcrumb.twig' with { breadcrumb_type: 'blog', title: blog.title, blog_url: blog.permalink } %}
+
+<div class="container margin-top margin-bottom">
+  <div class="row">
+    <div class="col-sm-12 section__title">
+      <h1 class="section-heading">{{ blog.title }}</h1>
+    </div>
+  </div>
+  <div class="row blog-posts">
+    <div class="col-sm-8">
+    {% for post in posts %}
+      <div class="blog-posts__post">
+        <div class="row">
+        {% if settings.featured_blog_thumbnails_enabled %}
+          {% if post.image_url is not null %}
+          <div class="col-xs-12 col-sm-3 image_square blog-posts__image blog-posts__with-image" style="background-image:url('{{ post.image_url }}');"></div>
+          {% else %}
+          <div class="col-xs-12 col-sm-3 image_square blog-posts__image blog-posts__no-image"></div>
+          {% endif %}
+        {% endif %}
+          <div class="col-xs-12{% if settings.featured_blog_thumbnails_enabled %} col-sm-9{% endif %}">
+            <h3 class="blog-posts__post-title">
+              <a class="blog-posts__post-title" href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">
+                {{ post.title }}
+              </a>
+            </h3>
+            <p class="date">{{ post.published_at | datetime }}</p>
+            <p class="blog-posts__post-summary">
+              {{ (post.summary is not empty ? post.summary : post.content) | truncate_words(40) }}
+            </p>
+            <p>
+              <a href="/blogs/{{ blog.permalink }}/posts/{{ post.permalink }}">Leer más <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% if loop.last == false %}
+      <hr class="divider" />
+      {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="col-sm-3">
+      {% include '_blog-sidebar.twig' %}
+    </div>
+  </div>
+
+  {% include '_pagination.twig' %}
+</div>
+{% endblock %}

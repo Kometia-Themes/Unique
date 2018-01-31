@@ -1,0 +1,13 @@
+{% if settings.main_banner_image is not empty and settings.enable_banner_image %}
+<div class="main-banner main-banner__simpleimage">
+      {% if settings.main_banner_overlay %}
+      <div class="main-banner__overlay"></div>
+      {% endif %}
+  <a href="{{ settings.main_banner_btn_url }}">
+      {% if settings.main_banner_overlay %}
+      <div class="main-banner__overlay"></div>
+      {% endif %}
+    <img src="{{ settings.main_banner_image }}">
+  </a>
+</div>
+{% endif %}
