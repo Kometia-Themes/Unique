@@ -2052,6 +2052,17 @@
               "default": "Precio: mayor a menor"
             }
           ]
+        },
+        {
+          "header": "Breadcrumb",
+          "settings": [
+            {
+              "type": "checkbox",
+              "id": "show_breadcrumb",
+              "label": "Mostrarlo",
+              "default": true
+            }
+          ]
         }
       ]
     },

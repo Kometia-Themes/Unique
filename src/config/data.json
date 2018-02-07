@@ -193,7 +193,8 @@
       "gift_btn_message": "Guardar",
       "enabled_customer_note_option": true,
       "customer_title_note": "Nota a la compra",
-      "customer_btn_note_text": "Agregar nota"
+      "customer_btn_note_text": "Agregar nota",
+      "show_breadcrumb": true
     }
   }
 }

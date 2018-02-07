@@ -1,26 +1,28 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
+{% if settings.show_breadcrumb %}
+  {% include '_breadcrumb.twig' with { breadcrumb_type: 'collection', title: collection.title | title, blog_url: ''} %}
+{% endif %}
 <div class="container margin-top margin-bottom">
-<div class="row">
-  <div class="col-xs-12 section__title">
-    <h1 class="section-heading">{{ collection.title }}</h1>
+  <div class="row">
+    <div class="col-xs-12 section__title">
+      <h1 class="section-heading">{{ collection.title }}</h1>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    {% for products_row in products | batch(3) %}
-    <div class="row">
-      {% for product in products_row %}
-      <div class="col-xs-12 col-sm-4">
-        {% include '_product-card.twig' %}
+  <div class="row">
+    <div class="col-sm-12">
+      {% for products_row in products | batch(3) %}
+      <div class="row">
+        {% for product in products_row %}
+        <div class="col-xs-12 col-sm-4">
+          {% include '_product-card.twig' %}
+        </div>
+        {% endfor %}
       </div>
       {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
-
 {% include '_pagination.twig' %}
 </div>
 {% endblock %}

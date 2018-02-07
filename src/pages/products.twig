@@ -1,8 +1,10 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-{% include '_breadcrumb.twig' with { breadcrumb_type: 'products', title: 'Productos', blog_url: '', filter: true } %}
-<div class="container">
+{% if settings.show_breadcrumb %}
+  {% include '_breadcrumb.twig' with { breadcrumb_type: 'products', title: 'Productos', blog_url: '', filter: true } %}
+{% endif %}
+<div class="container margin-top">
   <div class="row">
     <div class="col-xs-12 section__title">
       <h1 class="section-heading">{{ page_title }}</h1>

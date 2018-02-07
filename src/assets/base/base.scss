@@ -2729,7 +2729,7 @@ select.cart__resume-table__product-quantity {
 }
 
 .breadcrumb>li+li.breadcrub--inactive:before {
-  color: $breadcrumb_inactive_links_color;
+  color: $breadcrumb_active_links_color;
 }
 
 .breadcrumb>li+li:before {
