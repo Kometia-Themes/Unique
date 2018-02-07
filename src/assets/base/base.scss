@@ -1195,25 +1195,25 @@ h6 {
 .slide_1 .btn__slide:hover {
   color: $slide_1_btn_color;
   border-color: $slide_1_btn_color;
-  background-color: $slide_1_btn_color;
+  background-color: transparent;
 }
 
 .slide_2 .btn__slide:hover {
   color: $slide_2_btn_color;
   border-color: $slide_2_btn_color;
-  background-color: $slide_2_btn_color;
+  background-color: transparent;
 }
 
 .slide_3 .btn__slide:hover {
   color: $slide_3_btn_color;
   border-color: $slide_3_btn_color;
-  background-color: $slide_3_btn_color;
+  background-color: transparent;
 }
 
 .slide_4 .btn__slide:hover {
   color: $slide_4_btn_color;
   border-color: $slide_4_btn_color;
-  background-color: $slide_4_btn_color;
+  background-color: transparent;
 }
 
 .btn__buy {
@@ -1585,7 +1585,7 @@ h6 {
     padding-bottom: 0;
   }
   .slider-home.slider .slide .slider_content_outher .slider_content_inner a.btn__slide {
-    float: right;
+    margin-top: 20px;
   }
 }
 
