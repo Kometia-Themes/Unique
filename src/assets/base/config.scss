@@ -3,6 +3,8 @@ $body_font_type: "{{ settings.body_font_type }}";
 $body_font_weight: "{{ settings.body_font_weight }}";
 $body_font_color: "{{ settings.body_font_color }}";
 $body_font_size: "{{ settings.body_font_size }}";
+$btn_color: "{{ settings.btn_color }}";
+$btn_color_hover: "{{ settings.btn_color_hover }}";
 $image_placeholder: "{{ 'placeholders/product-11.jpg' | global_img_url }}";
 $body_background_color: "{{ settings.body_background_color }}";
 $brand_main_color: "{{ settings.brand_main_color }}";

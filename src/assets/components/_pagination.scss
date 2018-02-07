@@ -1,0 +1,37 @@
+.pagination {
+  >li>a,
+  >li>span {
+    color: $body_font_color;
+    background-color: transparent;
+    border: none;
+    padding: 16px 24px;
+  }
+  >li>a:focus,
+  >li>a:hover,
+  >li>span:focus,
+  >li>span:hover {
+    color: $body_font_color;
+    background-color: $brand_main_color;
+    border-color: $brand_main_color;
+  }
+  >.active>a,
+  >.active>a:focus,
+  >.active>a:hover,
+  >.active>span,
+  >.active>span:focus,
+  >.active>span:hover {
+    color: $body_font_color;
+    background-color: $brand_main_color;
+    border-color: $brand_main_color;
+  }
+  >li:first-child>a,
+  >li:first-child>span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  >li:last-child>a,
+  >li:last-child>span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
