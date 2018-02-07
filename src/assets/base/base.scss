@@ -57,7 +57,14 @@ a.btn:focus {
   color: $btn_color_hover;
 }
 
-a.btn-primary:hover, a.btn-primary:focus, .btn-primary:hover, .btn-primary:focus {
+a.btn-primary:hover,
+a.btn-primary:focus,
+.btn-primary:active,
+a.btn-primary:active,
+.btn-primary:active:focus,
+a.btn-primary:active:focus,
+.btn-primary:hover,
+.btn-primary:focus {
   border: 1px solid $brand_main_color;
   background-color: transparent;
   color: $btn_color_hover;

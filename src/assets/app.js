@@ -152,7 +152,6 @@ function() {
   var getUrlParameter = function() {
     // TODO get orderby params
     var _url = decodeURIComponent(window.location.search.substring(1));
-    console.log(_url);
     var _el = $("form.filters select option");
     if (_url.length) {
       var _param = _url.split("=")[1];
@@ -204,6 +203,9 @@ function() {
     $('.ajaxcart').animate({
       right: "0"
     }, 600);
+    setTimeout(function() {
+      hideAjaxCart(false);
+    }, 3000);
   }
 
   var ajaxCartImage = $('.ajaxcart .ajaxcart__content .ajaxcart__image');
@@ -223,20 +225,20 @@ function() {
     ajaxCartProductCaptionAlert.text('');
   }
 
-  var hideAjaxCart = function(mouseover) {
+  var hideAjaxCart = function(cursor_is_over) {
+    var _cursor_is_over = cursor_is_over;
     var isOver = $('.ajaxcart').is(":hover");
-    if (mouseover == true || !isOver) {
+    if (_cursor_is_over || !isOver) {
       $('.ajaxcart').animate({
         right: "-100%"
       }, 600 );
     }
   }
   $( ".ajaxcart" ).mouseleave(function() {
-    hideAjaxCart(false);
+    hideAjaxCart(true);
   });
   var updateCartQty = function(items) {
     var items = items > 0 ? items : 0;
-    console.log(items);
     $(".cart-notification").text(items);
   }
   var displayCartWarning = function(data) {
@@ -290,20 +292,6 @@ function() {
           }
       })
   }
-  var getCartByAjax = function() {
-    $.ajax({
-      url:ajaxConfig.getUrl,
-      type:'GET',
-      success: function(data, textStatus, jqXHR) {
-        AjaxCart = data.object || {};
-        updateCartQty(AjaxCart.total_items);
-      },
-      error: function(data, textStatus, errorThrown) {
-        console.log('message=:'+data+', text status=:'+textStatus+', error thrown:='+errorThrown)
-      }})
-    .done(function(){})
-    .done(function(data){});
-  }
 
   var addSimpleProductToCarByAjax = function(sku, qty) {
     var productSku = sku;
@@ -339,8 +327,9 @@ function() {
     addProductToCartByAjax();
   });
 
-  $('.close-ajax-cart').on('click', hideAjaxCart);
-  getCartByAjax();
+  $('.close-ajax-cart').on('click', function() {
+    hideAjaxCart(true);
+  });
   // End ajax component
 
 

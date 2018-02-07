@@ -49,7 +49,12 @@
               <input type="hidden" name="_method" value="patch">
               <input type="hidden" name="id" value="{{ item.id }}">
               <select class="cart__resume-table__product-quantity updateQty" name="quantity">
-                {% for qty in 1..5 %}
+              {% if item.quantity > 10 %}
+                {% set maxvalue = item.quantity + 5 %}
+              {% else %}
+                {% set maxvalue = 10 %}
+              {% endif %}
+                {% for qty in 1..maxvalue %}
                 <option value="{{ qty }}"{{ qty == item.quantity ? ' selected="selected"' : null }}>{{ qty }}</option>
                 {% endfor %}
               </select>
