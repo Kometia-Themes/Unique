@@ -9,7 +9,7 @@
     {% if settings[slide] %}
       {% if settings['slide_'~i~'_img_background'] is not empty and settings['slide_'~i~'_img_background'] is defined %}
         {% set slide_bg = settings['slide_'~i~'_img_background'] %}
-        <div class="slide {{ slide }} {{ slideType }}" style="background-image: url('{{ settings['slide_'~i~'_img_background'] }}&w=1400&h=868&fit=crop');">
+        <div class="slide {{ slide }} {{ slideType }}" style="background-image: url('{{ settings['slide_'~i~'_img_background'] }}&w=1920');">
       {% else %}
         <div class="slide {{ slide }}">
       {% endif %}
