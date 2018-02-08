@@ -62,8 +62,8 @@
           <li class="sidebar__item">
             <a class="sidebar__list-title" href="{{ link.url }}">{{ link.name }}</a>
           </li>
-          {% if menu_item.children | length >= 1 %}
-            {% for child in menu_item.children if child.name is not empty  %}
+          {% if link.children | length >= 1 %}
+            {% for child in link.children if child.name is not empty  %}
               <li class="sidebar__item">
                 <a class="sidebar__list-title" href="{{ child.url }}">{{ child.name }}</a>
               </li>
