@@ -4,25 +4,94 @@
 {% if settings.show_breadcrumb %}
   {% include '_breadcrumb.twig' with { breadcrumb_type: 'collection', title: collection.title | title, blog_url: ''} %}
 {% endif %}
-<div class="container margin-top margin-bottom">
+<div class="container margin-top">
   <div class="row">
     <div class="col-xs-12 section__title">
       <h1 class="section-heading">{{ collection.title }}</h1>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      {% for products_row in products | batch(3) %}
+    {# sidebar #}
+    <div class="{% if settings.show_sidebar %}col-md-10 col-md-push-2{% else %}col-xs-12{% endif %}">
+    {% include '_filter-bar.twig' %}
+    {% if products.count == 0 %}
       <div class="row">
-        {% for product in products_row %}
-        <div class="col-xs-12 col-sm-4">
-          {% include '_product-card.twig' %}
+        <div class="col-sm-12 text-center">
+          <p>Lo sentimos, no hay productos que mostrar.</p>
         </div>
-        {% endfor %}
       </div>
-      {% endfor %}
+    {% else %}
+      <div class="row">
+        <div class="col-xs-12 featured-products">
+          {% for products_row in products | batch(4) %}
+          <div class="row">
+            {% for product in products_row %}
+              <div class="col-xs-6 col-sm-6 col-md-3">
+                {% include "_product-card.twig" %}
+              </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% include '_pagination.twig' %}
+    {% endif %}
     </div>
+
+    {% set has_categories = categories | length > 0 %}
+    {% if settings.show_sidebar %}
+    <div class="col-md-2 col-md-pull-10 categories-filter">
+      <div class="sidebar">
+      {% if settings.show_categories and has_categories %}
+        <h4>Categorías</h4>
+        <div class="sidebar__content">
+          {% for categoryElement in categories %}
+            {% include '_sidebarmenu_tree_item.twig' with {
+              'category' : categoryElement,
+              'current'  : category
+            } only %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if settings.sidebar_menu_name is not empty %}
+        {% if settings.sidebar_menu_title is not empty %}
+        <h4>{{ settings.sidebar_menu_title }}</h4>
+        {% endif %}
+        <div class="sidebar__content">
+          {% for link in menus[settings.sidebar_menu_name] %}
+          <li class="sidebar__item">
+            <a class="sidebar__list-title" href="{{ link.url }}">{{ link.name }}</a>
+          </li>
+          {% if menu_item.children | length >= 1 %}
+            {% for child in menu_item.children if child.name is not empty  %}
+              <li class="sidebar__item">
+                <a class="sidebar__list-title" href="{{ child.url }}">{{ child.name }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {# end sidebar #}
   </div>
-{% include '_pagination.twig' %}
 </div>
+{% endblock %}
+
+{% block body_js %}
+{{ parent() }}
+<script type="text/javascript">
+  $(function() {
+    $(".sidebar__list-toggle").click(function(e){
+      e.preventDefault();
+      $(this).children(".fa").toggleClass('fa-chevron-up fa-chevron-down');
+      $(this).next(".categories-filter .sidebar__submenu").slideToggle( "slow", function() {
+        $(this).parents().closest().find(".fa").css({'color':'red'});
+      });
+    });
+  });
+</script>
 {% endblock %}
