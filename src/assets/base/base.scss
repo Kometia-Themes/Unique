@@ -2392,6 +2392,9 @@ h6 {
   color: $brand_main_color;
   text-transform: uppercase;
 }
+.row.cart {
+  min-height: 500px;
+}
 
 .cart__resume-table__product-name {
   font-size: 18px;
