@@ -37,7 +37,7 @@
         </form>
         {% endif %}
           {% for categoryElement in categories %}
-            {% include '_category_tree_item.twig' with {
+            {% include '_sidebarmenu_tree_item.twig' with {
               'category' : categoryElement,
               'current'  : category
             } only %}

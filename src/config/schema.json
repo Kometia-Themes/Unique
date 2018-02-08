@@ -1917,6 +1917,47 @@
       ]
     },
     {
+      "name": "Sidebar",
+      "sections": [
+        {
+          "settings": [
+            {
+              "type": "checkbox",
+              "id": "show_sidebar",
+              "label": "Mostrar el sidebar",
+              "default": true
+            },
+            {
+              "type": "checkbox",
+              "id": "show_categories",
+              "label": "Mostrar categorías",
+              "default": true
+            }
+          ]
+        },
+        {
+          "settings": [
+            {
+              "type": "checkbox",
+              "id": "show_sidebar_menu",
+              "label": "Mostrar menú",
+              "default": false
+            },
+            {
+              "type": "text",
+              "id": "sidebar_menu_name",
+              "label": "identificador del menú"
+            },
+            {
+              "type": "text",
+              "id": "sidebar_menu_title",
+              "label": "Título del menú"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Blog",
       "icon": "blog-page",
       "sections": [

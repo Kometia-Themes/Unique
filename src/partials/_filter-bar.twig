@@ -1,32 +1,23 @@
-<div class="navbar navbar-filters">
-    <div class="container">
-        <div class="navbar-collapse">
-            <form class="navbar-form" role="filters">
-                <div class="form-group">
-                  <select name="filter_alph" class="form-control">
-                      <option value="">Alfabéticamente:</option>
-                      <option value="a-z">A-Z</option>
-                      <option value="z-a">Z-A</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select name="filter_date" id="filter_type" class="form-control">
-                      <option value="">Fecha:</option>
-                      <option value="date">Nuevos - viejos</option>
-                      <option value="popularity">Viejos - nuevos </option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select name="filter_price" id="filter_type" class="form-control">
-                      <option value="">Precio:</option>
-                      <option value="date">Menor - mayor</option>
-                      <option value="popularity">Mayor - menor</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-sm btn-default" type="submit">Filtrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    {% if settings.orderby_name or settings.orderby_created or settings.orderby_price %}
+    <form name="filters" class="filters" role="filters">
+      <select name="sort_by" id="sort_by" class="filter_order selectpicker form-control" data-width="220px">
+        <option value="no-order" disabled selected>Ordenar por</option>
+        {% if settings.orderby_name %}
+        <option value="name-ascending">{{ settings.orderby_name_ascending_text }}</option>
+        <option value="name-descending">{{ settings.orderby_name_descending_text }}</option>
+        {% endif %}
+        {% if settings.orderby_created %}
+        <option value="created-ascending">{{ settings.orderby_created_ascending_text }}</option>
+        <option value="created-descending">{{ settings.orderby_created_descending_text }}</option>
+        {% endif %}
+        {% if settings.orderby_price %}
+        <option value="price-ascending">{{ settings.orderby_price_ascending_text }}</option>
+        <option value="price-descending">{{ settings.orderby_price_descending_text }}</option>
+        {% endif %}
+      </select>
+    </form>
+    {% endif %}
+  </div>
 </div>

@@ -194,7 +194,12 @@
       "enabled_customer_note_option": true,
       "customer_title_note": "Nota a la compra",
       "customer_btn_note_text": "Agregar nota",
-      "show_breadcrumb": true
+      "show_breadcrumb": true,
+      "show_sidebar": true,
+      "show_sidebar_menu": false,
+      "sidebar_menu_name": "",
+      "sidebar_menu_title": "",
+      "show_categories": true
     }
   }
 }
