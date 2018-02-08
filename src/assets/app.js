@@ -4,7 +4,7 @@ $('body a').css({'pointer-events':'none'})})
 .ajaxStop(function(){
 $(document.body).css({'cursor':'default'});
 $('body a').css({'pointer-events':'auto'})}).ready(
-function() {
+  function() {
   var win = $(window);
   // Common functions
   var disabled = function() {
