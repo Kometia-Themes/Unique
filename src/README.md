@@ -175,4 +175,4 @@ Para obtener más información sobre [SemVer] (http://semver.org/lang/es/).
 
 ## Copyright
 
-&copy; Copyright Shoperti 2017 - Ver [TÉRMINOS Y CONDICIONES](https://www.shoperti.com/terminos-y-condiciones) para más detalles.
+&copy; Copyright Shoperti 2018 - Ver [TÉRMINOS Y CONDICIONES](https://www.shoperti.com/terminos-y-condiciones) para más detalles.
