@@ -2022,7 +2022,8 @@ h6 {
 }
 
 .product-card__image .product-card__title:hover {
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(100,100,110,.3);
+  text-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 
 .product-card__image .product-card__title:hover .product-card__thumb-link {
