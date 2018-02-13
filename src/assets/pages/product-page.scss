@@ -6,6 +6,8 @@
     max-width: 180px;
     display: inline-block;
     height: 40px;
+    position: relative;
+    z-index: 1;
     .input-group {
       position: relative;
       width: auto;
