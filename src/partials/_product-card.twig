@@ -21,7 +21,7 @@
     </h5>
   </div>
   <div class="product-card__description">
-    <p class="product-card__title"><a href="/productos/{{ product.permalink }}{% if product.sku.permalink != 'default' %}/{{ product.sku.permalink }}{% endif %}">{{ product.name }}</a></p>
+    <p class="product-card__title"><a class="link" href="/productos/{{ product.permalink }}{% if product.sku.permalink != 'default' %}/{{ product.sku.permalink }}{% endif %}">{{ product.name }}</a></p>
     <p class="product-card__price"> <span class="final-price">{{ product.price | money('symbol', 'code') }}</span></p>
       <p class="compared__price">
         {% if product.compared_price > product.price %}

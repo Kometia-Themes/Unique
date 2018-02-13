@@ -1,5 +1,5 @@
 {% extends 'layout.twig' %}
-
+{% block body_class %}blog-page{% endblock body_class %}
 {% block body %}
 {% include '_breadcrumb.twig' with { breadcrumb_type: 'blog', title: blog.title, blog_url: blog.permalink } %}
 
@@ -27,7 +27,6 @@
                 {{ post.title }}
               </a>
             </h3>
-            <p class="date">{{ post.published_at | datetime }}</p>
             <p class="blog-posts__post-summary">
               {{ (post.summary is not empty ? post.summary : post.content) | truncate_words(40) }}
             </p>

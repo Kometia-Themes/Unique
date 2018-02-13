@@ -1,5 +1,5 @@
 {% extends 'layout.twig' %}
-
+{% block body_class %}post-page{% endblock body_class %}
 {% block body %}
 {% include '_breadcrumb.twig' with { breadcrumb_type: 'post', title: 'Blogs', blog_url: blog.permalink, subtitle: post.title | title } %}
 <div class="container margin-bottom margin-top">

@@ -1,5 +1,5 @@
 {% extends 'layout.twig' %}
-
+{% block body_class %}collections-page{% endblock body_class %}
 {% block body %}
 {% if settings.show_breadcrumb %}
   {% include '_breadcrumb.twig' with { breadcrumb_type: 'collections', title: 'Colecciones', blog_url: ''} %}

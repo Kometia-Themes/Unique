@@ -1,0 +1,32 @@
+  .categories-filter {
+    position: relative;
+  }
+
+  .sidebar {
+    position: relative;
+    h4 {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 0;
+    }
+    .sidebar__content {
+      position: relative;
+      margin-top: 0;
+      padding: 0;
+      margin-bottom: 40px;
+      .sidebar__item {
+        .sidebar__list-title {
+          color: #999999;
+        }
+      }
+    }
+  }
+
+  .sidebar.fixed {
+    position: relative;
+    @media(min-width: 768px) {
+      position: fixed;
+    }
+  }

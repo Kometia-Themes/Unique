@@ -11,7 +11,7 @@
         <ul class="breadcrumb">
           <li class="breadcrumb__link breadcrub--inactive"><a href="/">Inicio</a></li>
           {% if breadcrumb_type == 'post' %}
-          <li class="breadcrumb__link breadcrub--active"><a href="/blogs/{{ blog_url |lower }}">{{ title }}</a></li>
+          <li class="breadcrumb__link breadcrub--inactive"><a href="/blogs/{{ blog_url |lower }}">{{ title }}</a></li>
           <li class="breadcrumb__link breadcrub--inactive">{{ subtitle }}</li>
           {% elseif breadcrumb_type == 'blog' %}
           <li class="breadcrumb__link breadcrub--inactive">Blogs</li>

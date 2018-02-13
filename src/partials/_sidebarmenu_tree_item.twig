@@ -5,7 +5,7 @@
       <a class="sidebar__list-toggle"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
     <ul class="sidebar__submenu {% if category.permalink == current.permalink %}active{% endif %}">
     {% for sub_category in category.children %}
-      {% include '_category_tree_item.twig' with {
+      {% include '_sidebarmenu_tree_item.twig' with {
         'category' : sub_category,
         'current'  : current
       } only %}

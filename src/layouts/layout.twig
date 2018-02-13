@@ -49,7 +49,7 @@
 
 </head>
 
-<body role="document">
+<body class="{% block body_class %}{% endblock body_class %}" role="document">
   {% include '_ajaxcart.twig' %}
   <header class="header">
     {% include "_nav.twig" %}
