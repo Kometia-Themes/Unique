@@ -1,16 +1,11 @@
 {% if settings.video_enable and settings.video_url is not empty %}
 <div class="container margin-bottom margin-top">
   <div class="row">
-    {% if settings.video_title is not empty %}
-    <div class="col-xs-12 section__title">
-      <h2 class="section-heading">{{ settings.video_title }}</h2>
-    </div>
-    {% endif %}
     <div class="col-xs-12">
       <!-- 21:9 aspect ratio -->
       <div class="embed-responsive embed-responsive-{{ settings.video_format_size }}">
-      {% if settings.frontpage_section_video_type == 'youtube' %}
-        <iframe width="560" height="315" src="{{ settings.video_url }}?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      {% if settings.video_url_type == 'youtube' %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ settings.video_url }}?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       {% else %}
         <iframe src="{{ settings.video_url }}"></iframe>
       {% endif %}
