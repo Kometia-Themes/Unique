@@ -213,11 +213,8 @@ a.btn-primary:active:focus,
 }
 
 .section__title {
-  text-align: left;
-  margin-bottom: 1em;
-  @media(max-width: 767px) {
-    text-align: center;
-  }
+  text-align: center;
+  margin-bottom: 2em;
 }
 
 .section-title--margin {
@@ -229,7 +226,7 @@ a.btn-primary:active:focus,
   font-family: $heading_font, $heading_font_type;
   font-size: 2.4em;
   color: $headings_color;
-  margin: 0;
+  margin: 0 0 20px;
   line-height: .8;
   @media(max-width: 767px) {
     margin-bottom: 20px;
@@ -2382,11 +2379,11 @@ h6 {
 
 /* Cart styles */
 .cart__resume-table th {
-  color: $brand_main_color;
+  color: #999999;
   text-transform: uppercase;
 }
 .row.cart {
-  min-height: 500px;
+  min-height: 200px;
 }
 
 .cart__resume-table__product-name {
@@ -2456,8 +2453,11 @@ select.cart__resume-table__product-quantity {
   }
   .cart__resume-table__product-remove-column .cart__resume-table__product-remove {
     position: absolute;
-    bottom: 10px;
+    bottom: initial;
     right: 10px;
+    width: auto;
+    padding: 5px;
+    top: 20px;
   }
   select.cart__resume-table__product-quantity {
     margin-top: 5px;

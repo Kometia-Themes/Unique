@@ -1311,6 +1311,10 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             },
@@ -1347,6 +1351,10 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             },
@@ -1383,6 +1391,10 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             },
@@ -1419,6 +1431,10 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             },
@@ -1455,6 +1471,10 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             },
@@ -1491,6 +1511,50 @@
                 {
                   "value": "featured-instagram",
                   "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "frontpage_section_7",
+              "label": "Sección 7",
+              "default": "featured-video",
+              "options": [
+                {
+                  "value": "none",
+                  "label": "Ningúno"
+                },
+                {
+                  "value": "featured-slider",
+                  "label": "Slider"
+                },
+                {
+                  "value": "featured-collections",
+                  "label": "Colecciones destacadas"
+                },
+                {
+                  "value": "featured-products",
+                  "label": "Productos destacados"
+                },
+                {
+                  "value": "featured-banner",
+                  "label": "Banner"
+                },
+                {
+                  "value": "featured-blog",
+                  "label": "Blog"
+                },
+                {
+                  "value": "featured-instagram",
+                  "label": "Galería Instagram"
+                },
+                {
+                  "value": "featured-video",
+                  "label": "Video"
                 }
               ]
             }
@@ -1911,6 +1975,66 @@
               "type": "text",
               "id": "instagram_token",
               "label": "Token de sesión"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Página de Inicio - Video",
+      "icon": "home-page",
+      "sections": [
+        {
+          "settings": [
+            {
+              "type": "checkbox",
+              "id": "video_enable",
+              "label": "Mostrar el video",
+              "default": false
+            },
+            {
+              "type": "text",
+              "id": "video_title",
+              "label": "Título de sección",
+              "default": ""
+            },
+            {
+              "type": "text",
+              "id": "video_url",
+              "label": "Liga al video",
+              "info": "Si tu video es de Vimeo, busca la opción compartir y luego insertar. Copia solo la sección que inicia con https://player.vimeo.com/video/{numero}"
+            },
+            {
+              "type": "select",
+              "id": "video_url_type",
+              "label": "Origen del video",
+              "default": "youtube",
+              "options": [
+                {
+                  "value": "youtube",
+                  "label": "Youtube"
+                },
+                {
+                  "value": "vimeo",
+                  "label": "Vimeo"
+                }
+              ]
+            },
+            {
+              "type": "select",
+              "id": "video_format_size",
+              "label": "Proporción del video",
+              "default": "16by9",
+              "options": [
+                {
+                  "value": "16by9",
+                  "label": "16 x 9"
+                },
+                {
+                  "value": "4by3",
+                  "label": "4 x 3"
+                }
+              ]
             }
           ]
         }
