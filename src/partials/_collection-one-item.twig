@@ -1,0 +1,38 @@
+{% if collection.image_url is not null %}
+  {% set image_url = collection.image_url %}
+{% else %}
+  {% set image_url = 'placeholders/product-11.jpg' | global_img_url %}
+{% endif %}
+
+{% set format = settings.featured_collection_format %}
+
+{% if format == 'portrait' and cropped == true %}
+  {% set width = '&w=400' %}
+  {% set height = '&h=648&fit=crop' %}
+{% elseif format == 'landscape' and cropped == true %}
+  {% set width = '&w=648' %}
+  {% set height = '&h=400&fit=crop' %}
+{% elseif format == 'square' and cropped == true %}
+  {% set width = '&w=400' %}
+  {% set height = '&h=400&fit=crop' %}
+{% else %}
+  {% set width = '&w=1170' %}
+  {% set height = '&fit=crop' %}
+{% endif %}
+
+<div class="collection--item">
+  <div class="collection--item__container">
+    <a href="/colecciones/{{ collection.permalink }}" class="collection--item__link">
+      {% if settings.featured_collection_show_title %}
+      <div class="data-container">
+        <div class="outher">
+          <div class="inner">
+            <h3 class="collection--item__title">{{ collection.title }}</h3>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <img class="collection--item__image" src="{{ image_url }}{{ width }}{{ height }}" alt="{{ collection.title }}">
+    </a>
+  </div>
+</div>

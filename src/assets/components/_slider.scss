@@ -1,0 +1,108 @@
+.slider-home.slider {
+  .slide {
+    .outher-container {
+      bottom: 0;
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+    .outher {
+      height: 100%;
+      min-height: 100%;
+      width: 100%;
+      min-width: 100%;
+      display: table;
+    }
+    .inner {
+      width: 100%;
+      display: table-cell;
+      vertical-align: middle;
+      @media (max-width: 767px) {
+        padding-right: 20px;
+        padding-left: 20px;
+        vertical-align: bottom;
+        padding-bottom: 20px;
+      }
+      h1 {
+        color: $slide_title_color;
+        @media (max-width: 767px) {
+          margin-bottom: .3em;
+        }
+      }
+      h2 {
+        color: $slide_description_color;
+        @media (max-width: 767px) {
+          margin-bottom: 1em;
+        }
+      }
+      a.btn__slide {
+        color: $slide_btn_color;
+        border-color: $slide_btn_color;
+        @media (max-width: 767px) {
+          float: none;
+        }
+        @media (min-width: 768px) {
+          margin-top: 20px;
+        }
+      }
+      @media (min-width: 768px) {
+        padding-right: 45px;
+        padding-left: 45px;
+        vertical-align: middle;
+        padding-bottom: 0;
+      }
+    }
+  }
+  .slide.slide_1 {
+    .outher .inner {
+      h1 {
+        color: $slide_1_title_color;
+      }
+      h2 {
+        color: $slide_1_description_color;
+      }
+      h2 em {
+        color: $slide_1_description_color;
+      }
+      a.btn__slide {
+        color: $slide_1_btn_color;
+        border-color: $slide_1_btn_color;
+      }
+    }
+  }
+  .slide.slide_2 {
+    .outher .inner {
+      h1 {
+        color: $slide_2_title_color;
+      }
+      h2 {
+        color: $slide_2_description_color;
+      }
+      h2 em {
+        color: $slide_2_description_color;
+      }
+      a.btn__slide {
+        color: $slide_2_btn_color;
+        border-color: $slide_2_btn_color;
+      }
+    }
+  }
+  .slide.slide_3 {
+    h1 {
+      color: $slide_3_title_color;
+    }
+    h2 {
+      color: $slide_3_description_color;
+    }
+    h2 em {
+      color: $slide_3_description_color;
+    }
+    a.btn__slide {
+      color: $slide_3_btn_color;
+      border-color: $slide_3_btn_color;
+    }
+  }
+}

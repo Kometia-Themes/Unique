@@ -90,7 +90,7 @@ module.exports = {
       { from: './src/assets/settings.css.twig', to: 'assets' }
     ], {
       ignore: [
-        // Doesn't copy any files with a extension    
+        // Doesn't copy any files with a extension
         '*.less',
         './src/assets/*.less',
         '.DS_Store',

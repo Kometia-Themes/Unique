@@ -1,3 +1,5 @@
+var win = $(window);
+
 $(document).ajaxStart(function(){
 $(document.body).css({'cursor':'wait'});
 $('body a').css({'pointer-events':'none'})})
@@ -5,7 +7,6 @@ $('body a').css({'pointer-events':'none'})})
 $(document.body).css({'cursor':'default'});
 $('body a').css({'pointer-events':'auto'})}).ready(
   function() {
-  var win = $(window);
   // Common functions
   var disabled = function() {
     $('html').on('click', '.disabled', function(event){
@@ -33,6 +34,7 @@ $('body a').css({'pointer-events':'auto'})}).ready(
     $('.slider').slick({
       autoplay: true,
       autoplaySpeed: 4000,
+      fade: true,
       prevArrow: $('.arrow-element.left-arrow'),
       nextArrow: $('.arrow-element.right-arrow')
     });
@@ -125,7 +127,7 @@ $('body a').css({'pointer-events':'auto'})}).ready(
       e.stopPropagation();
       e.preventDefault();
     });
-    if ($(window).width() >= 768) {
+    if (win.width() >= 768) {
       $('body').on('click', function() {
         $('.topnav-menu .fa').removeClass('fa-caret-down').addClass('fa-caret-right');
         $('ul.main-menu_menu').hide();
@@ -141,13 +143,6 @@ $('body a').css({'pointer-events':'auto'})}).ready(
         $(this).hide();
       });
     }
-    var enableClickOnProductCard = function() {
-      $('div.product-card__image').on('click', function() {
-        var _url = $(this).data("product-card-url");
-        window.location= _url;
-      });
-    }
-    enableClickOnProductCard();
   }
   var getUrlParameter = function() {
     // TODO get orderby params
@@ -191,9 +186,10 @@ $('body a').css({'pointer-events':'auto'})}).ready(
 
   // AJAX Add to Cart Component
   // Add Product to cart by ajax
-  var root = document.location.hostname;
+  var root = window.location.hostname;
+  var PROTOCOL = window.location.protocol;
   var getAjaxStoteUrl = function(type) {
-    return 'https://'+ root + '/' + type;
+    return PROTOCOL + '//' + root + '/' + type;
   }
   var ajaxConfig = {
     getUrl:   getAjaxStoteUrl('cart.json'),

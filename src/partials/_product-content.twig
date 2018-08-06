@@ -1,14 +1,26 @@
 {% include '_breadcrumb.twig' with { breadcrumb_type: 'product', title: 'Productos', blog_url: '', subtitle: product.name | title } %}
-
+{% if settings.product_thumbnail_form == 'image_portrait' %}
+  {% set thumb = { 'width': 350, 'height': 615 } %}
+  {% set main = { 'width': 790, 'height': 1280 } %}
+{% elseif settings.product_thumbnail_form == 'image_landscape' %}
+  {% set thumb = { 'width': 350, 'height': 216 } %}
+  {% set main = { 'width': 900, 'height': 556 } %}
+{% else %}
+  {% set thumb = { 'width': 350, 'height': 350 } %}
+  {% set main = { 'width': 900, 'height': 900 } %}
+{% endif %}
 <div class="product-single">
   <div class="container margin-top">
     <div class="row">
       <div class="col-sm-6">
         <div class="main-product">
+        {% if settings.enable_product_image_zoom %}
+          <div class="fireZoomEvent visible-xs visible-sm"><span>{{ settings.product_image_zoom_in_text }}</span></div>
+        {% endif %}
         {% if product.images | length == 0 %}
-        <img src="{{ 'placeholders/product-15.jpg' | global_img_url }}" alt="{{ product.name }}" id="zoom">
+        <img width="{{ main.width }}" height="{{ main.height }}" src="{{ 'placeholders/product-15.jpg' | global_img_url }}&w={{ main.width }}&h={{ main.height }}&fit=crop" alt="{{ product.name }}" id="zoom">
         {% else %}
-        <img src="{{ product.image_url }}" alt="{{ product.name }}" id="zoom">
+        <img width="{{ main.width }}" height="{{ main.height }}" src="{{ product.image_url }}" alt="{{ product.name }}&w={{ main.width }}&h={{ main.height }}&fit=crop" id="zoom">
         {% endif %}
         </div>
         {# Loop for Slider Nav #}
@@ -17,7 +29,7 @@
           <div class="slider-product js-slider">
             {% for thumbnail in product.images %}
             <div class="slider-product__item">
-              <img class="slider-product--image" src="{{ thumbnail.url }}" alt="{{ product.name }}">
+              <img width="{{ thumb.width }}" height="{{ thumb.height }}" class="slider-product--image" src="{{ thumbnail.url }}&w={{ thumb.width }}&h={{ thumb.height }}&fit=crop" alt="{{ product.name }}">
             </div>
             {% endfor %}
           </div>
@@ -31,7 +43,7 @@
             <p class="vendor">Marca: <strong>{{ product.vendor_name }}</strong></p>
           {% endif %}
         <div class="product-single__price" id="js-price-preview">
-          <del class="compared-price"><span class="inner">{{ product.compared_price is defined ? product.compared_price | money('symbol', 'code') : '' }}</span></del><br>
+          <del class="compared-price"><span class="inner">{{ product.compared_price is defined and product.compared_price > product.price ? product.compared_price | money('symbol', 'code') : '' }}</span></del><br>
           <span class="product-price-data-price">{{ product.price | money('symbol', 'code') }}</span>
         </div>
         <div class="product-price-data">
@@ -43,7 +55,7 @@
               {% set default_variant = product.sku.modifiers[step] %}
             <div class="col-xs-12 col-md-6">
               <div class="product__vars">
-                <h5 class="product__heading">{{ attribute }}</h5>
+                <h5 class="product__heading">{{ attribute|title }}</h5>
                 <select id="{{ attribute |lower}}" class="selectpicker js-variant-select" title="Elegir {{ attribute }}" name="{{ loop.index0 }}" id="{{ loop.index0 }}">
                   {% for variant in attribute_variants %}
                   <option value="{{ variant }}" {% if default_variant == variant %}selected="selected"{% endif %}>{{ variant }}</option>
@@ -93,5 +105,20 @@
         </div>
       </div>
     </div>
+    {% if settings.related_products and product.related_by_tags | length > 0 %}
+    <hr>
+      <div class="related_products">
+        <div class="row symmetrical-container">
+          <div class="col-xs-12">
+            <h3>Productos relacionados</h3>
+          </div>
+        {% for product in product.related_by_tags | slice(0, 4) %}
+            <div class="col-xs-6 col-sm-3 symmetrical">
+              {% include '_product-card.twig' %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>

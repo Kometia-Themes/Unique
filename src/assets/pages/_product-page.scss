@@ -1,4 +1,30 @@
 .product-single {
+  .margin-top {
+    @media(max-width: 767px) {
+      margin-top: 0;
+    }
+  }
+  .fireZoomEvent {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    bottom: 12px;
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
+    span {
+      border-radius: 4px;
+      background-color: rgba(255,255,255,.75);
+      padding: 4px 6px;
+      color: #000000;
+    }
+  }
+  .product-single__name {
+    color: $heading_font_color;
+    @media(max-width: 767px) {
+      font-size: 1.8em;
+    }
+  }
   .quantity {
     margin-top: 4px;
     margin-bottom: 2em;
@@ -81,5 +107,8 @@
         }
       }
     }
+  }
+  &__price {
+    margin-bottom: 2em;
   }
 }

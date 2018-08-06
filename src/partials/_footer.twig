@@ -10,7 +10,7 @@
       <p class="newsletter-foo--body-color">{{ settings.footer_mailing_list_text }}</p>
       {% form 'newsletter' %}
         <div class="input-group newsletter-foo--input-group">
-          <input type="email" name="newsletter" class="form-control newsletter-foo--input" id="newsletter"  placeholder="Escribe tu email aquì" required>
+          <input type="email" name="email" class="form-control newsletter-foo--input" id="newsletter"  placeholder="Escribe tu email aquì" required>
           <button type="submit" class="btn btn-default newsletter-foo__button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
         </div>
       {% endform %}
@@ -67,6 +67,9 @@
             {% if settings.accept_amex %}
             <li><img src="{{ 'amex.png'| payment_img_url }}" alt="American Express"></li>
             {% endif %}
+            {% if settings.accept_carnet %}
+            <li><img src="{{ 'carnet.png'| payment_img_url }}" alt="Carnet"></li>
+            {% endif %}
             {% if settings.accept_paypal %}
             <li><img src="{{ 'paypal.png'| payment_img_url }}" alt="Paypal"></li>
             {% endif %}
@@ -87,7 +90,7 @@
           {% if settings.policy_url is not empty %}
            <span class="hidden-xs"> &nbsp;|&nbsp; </span><a href="/paginas/{{ settings.policy_url }}">Aviso de privacidad</a>
           {% endif %}
-          <br class="visible-xs"><span class="hidden-xs"> &nbsp;|&nbsp; </span> Tienda creada con <a class="submenu__link--color" href="https://www.shoperti.com"><strong>Shoperti</strong></a>
+          <br class="visible-xs"><span class="hidden-xs"> &nbsp;|&nbsp; </span> Tienda creada con <a class="submenu__link--color" href="https://www.kometia.com"><strong>Kometia</strong></a>
         </p>
         </div>
       </div>

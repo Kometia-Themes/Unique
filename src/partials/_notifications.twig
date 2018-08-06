@@ -1,13 +1,9 @@
 {% if errors is not empty %}
 <div class="alert alert-danger fade in notifications type-errors">
-  <div class="container">
-    <div class="col-xs-12 text-center">
-    <button type="button" class="close notifications__close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {% for message in errors %}
-    <div class="notifications__message">{{ message }}</div>
-    {% endfor %}
-    </div>
-  </div>
+  <button type="button" class="close notifications__close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  {% for message in errors %}
+  <div class="notifications__message">{{ message|capitalize }}</div>
+  {% endfor %}
 </div>
 {% endif %}
 
@@ -15,7 +11,7 @@
 <div class="alert alert-success fade in notifications type-success">
   <button type="button" class="close notifications__close" data-dismiss="alert" aria-hidden="true">&times;</button>
   {% for message in success %}
-  <div class="notifications__message">{{ message }}</div>
+  <div class="notifications__message">{{ message|capitalize }}</div>
   {% endfor %}
 </div>
 {% endif %}
@@ -24,7 +20,7 @@
 <div class="alert alert-warning fade in notifications type-warning">
   <button type="button" class="close notifications__close" data-dismiss="alert" aria-hidden="true">&times;</button>
   {% for message in warning %}
-  <div class="notifications__message">{{ message }}</div>
+  <div class="notifications__message">{{ message|capitalize }}</div>
   {% endfor %}
 </div>
 {% endif %}
