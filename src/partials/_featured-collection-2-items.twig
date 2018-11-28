@@ -1,8 +1,9 @@
-<div class="row collection__grid collection__layout__2-items no-gutter">
+<div class="row featured-collection-grid no-gutter">
   <div class="col-xs-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_1 } %}
+    {% include '_collection-one-item.twig' with { 'collection': collection_1, 'cropped': true } %}
   </div>
   <div class="col-xs-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_2 } %}
+    {% include '_collection-one-item.twig' with { 'collection': collection_2, 'cropped': true } %}
   </div>
 </div>
+

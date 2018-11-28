@@ -1,5 +1,5 @@
-# Shoperti Unique Theme
-> Este es el tema utilizado en [Unique](https://unique-theme.shoperti.com/) y puede servirte de inspiración. Puedes usarlo cómo base para crear uno nuevo o realizar ajustes pequeños y modificaciones. Sin duda, puede ser el punto de partida para aprender a construir tus propios temas desde cero.
+# Kometia Unique Theme
+> Este es el tema utilizado en [Unique](https://unique-theme.kometia.com/) y puede servirte de inspiración. Puedes usarlo cómo base para crear uno nuevo o realizar ajustes pequeños y modificaciones. Sin duda, puede ser el punto de partida para aprender a construir tus propios temas desde cero.
 >
 > ** Para más detalles sobre el desarrollo del tema, lee nuestra [Documentación del tema] (https://github.com/Shoperti-Themes/Unique) **.
 
@@ -175,4 +175,4 @@ Para obtener más información sobre [SemVer] (http://semver.org/lang/es/).
 
 ## Copyright
 
-&copy; Copyright Shoperti 2018 - Ver [TÉRMINOS Y CONDICIONES](https://www.shoperti.com/terminos-y-condiciones) para más detalles.
+&copy; Copyright Kometia 2018 - Ver [TÉRMINOS Y CONDICIONES](https://www.kometia.com/terminos-y-condiciones) para más detalles.

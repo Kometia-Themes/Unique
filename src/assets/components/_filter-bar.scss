@@ -43,13 +43,6 @@
     .filters__btn:focus {
       background: transparent;
     }
-    .filters__btn {}
-    .filter_alph,
-    .filter_date,
-    .filter_price {}
-    .filter_alph {}
-    .filter_date {}
-    .filter_price {}
   }
 }
 
@@ -57,6 +50,7 @@ form.filters {
   text-align: right;
   margin: 0;
   @media(max-width: 767px) {
+    margin-bottom: 12px;
     text-align: center;
   }
 }

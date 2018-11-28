@@ -7,19 +7,41 @@
 
 <script type="text/javascript">
   $(function () {
+    var win = $(window);
+    {% if settings.enable_product_image_zoom %}
+    var zoomInText = '{{ settings.product_image_zoom_in_text }}';
+    var zoomOutText = '{{ settings.product_image_zoom_out_text }}';
     var loadZoom =function() {
       $('#zoom').wrap('<span style="display:block"></span>')
         .css('display', 'block')
         .parent()
-        .zoom();
-      }
+        .zoom({
+            on: win.width() < 768 ? 'click' : 'mouseover',
+            touch: win.width() < 768 ? true : false,
+            magnify: 1.6,
+            onZoomIn: function() { $('.fireZoomEvent span').text(zoomOutText); },
+            onZoomOut: function() { $('.fireZoomEvent span').text(zoomInText); }
+          });
+    }
+    {% endif %}
+
+    {% if settings.product_thumbnail_form == 'image_portrait' %}
+      var thumb = { 'width': 350, 'height': 615 }
+      var main = { 'width': 790, 'height': 1280 }
+    {% elseif settings.product_thumbnail_form == 'image_landscape' %}
+      var thumb = { 'width': 350, 'height': 216 }
+      var main = { 'width': 900, 'height': 556 }
+    {% else %}
+      var thumb = { 'width': 350, 'height': 350 }
+      var main = { 'width': 900, 'height': 900 }
+    {% endif %}
 
     // Quantity input
     var qty = $("input#quantity");
     $('.btn-number').click(function(e){
       e.preventDefault();
-      fieldName = $(this).attr('data-field');
-      type      = $(this).attr('data-type');
+      var fieldName = $(this).attr('data-field');
+      var type      = $(this).attr('data-type');
       var input = $("input[name='"+fieldName+"']");
       var currentVal = parseInt(input.val());
         if (!isNaN(currentVal)) {
@@ -117,8 +139,9 @@
 
     $('.slider-product__item').on('click', function() {
       mainProduct = $(this).find('img').attr('src');
+      mainProduct = mainProduct.split('&')[0]+'&w='+main.width+'&h='+main.height+'fit=crop';
       $('.main-product').empty();
-      $('.main-product').append('<img src=\"'+mainProduct+'\" id=\"zoom\">');
+      $('.main-product').append('<div class=\"fireZoomEvent visible-xs visible-sm\"><span>{{ settings.product_image_zoom_in_text }}</span></div><img width=\"'+main.width+'\" height=\"'+main.height+'\" src=\"'+mainProduct+'\" id=\"zoom\">');
       {% if settings.enable_product_image_zoom %}
         var zoom = $('#zoom');
         zoom.trigger('zoom.destroy');
@@ -168,13 +191,13 @@
             var zoom = $('#zoom');
             if (image && $('.zoomImg').attr('src') != image) {
               zoom.trigger('zoom.destroy');
-              zoom.attr("src", image);
+              zoom.attr("src", image+'&w='+main.width+'&h='+main.height+'fit=crop');
               loadZoom();
             }
           } else {
           var zoom = $('#zoom');
             if (image && zoom.attr('src') != image) {
-              zoom.attr("src", image);
+              zoom.attr("src", image+'&w='+main.width+'&h='+main.height+'fit=crop');
             }
           }
         }

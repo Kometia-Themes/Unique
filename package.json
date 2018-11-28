@@ -1,7 +1,7 @@
 {
   "name": "Unique",
   "version": "1.0.0",
-  "description": "Theme Unique Shoperti",
+  "description": "Theme Unique Kometia",
   "repository": {
     "type": "git",
     "url": "git@github.com:Shoperti-Themes/Unique.git"
@@ -15,11 +15,11 @@
     "serve": "webpack-dev-server --progress --colors --config ./webpack.server.config.js "
   },
   "keywords": [
-    "Shoperti",
+    "Kometia",
     "template",
     "theme"
   ],
-  "author": "Shoperti",
+  "author": "Kometia",
   "license": "ISC",
   "engineStrict": true,
   "engines": {

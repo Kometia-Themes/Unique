@@ -1,17 +1,18 @@
-<div class="row collection__grid collection__layout__3-items no-gutter">
-  <div class="col-sm-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_1 } %}
+<div class="row featured-collection-grid no-gutter">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    {% include '_collection-one-item.twig' with { 'collection': collection_1, 'cropped': true } %}
   </div>
-  <div class="col-sm-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_2 } %}
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    {% include '_collection-one-item.twig' with { 'collection': collection_2, 'cropped': true } %}
   </div>
-  <div class="col-sm-12">
-    {% include '_collection-rectangle--full.twig' with { 'collection': collection_3 } %}
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+    {% include '_collection-one-item.twig' with { 'collection': collection_3, 'cropped': true } %}
   </div>
-  <div class="col-sm-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_4 } %}
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    {% include '_collection-one-item.twig' with { 'collection': collection_4, 'cropped': true } %}
   </div>
-  <div class="col-sm-6">
-    {% include '_collection-rectangle.twig' with { 'collection': collection_5 } %}
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    {% include '_collection-one-item.twig' with { 'collection': collection_5, 'cropped': true } %}
   </div>
 </div>
+
