@@ -7,13 +7,7 @@ $heading_font: "{{ settings.heading_font | remove('Google+') | replace({'+': ' '
 $heading_font_type: "{{ settings.heading_font_type }}";
 $heading_font_weight: "{{ settings.heading_font_weight }}";
 $heading_font_color: "{{ settings.heading_font_color }}";
-$heading_font_size: "{{ settings.heading_font_size }}px";
-$heading_font_size_h1: "{{ settings.heading_font_size * 1 }}px";
-$heading_font_size_h2: "{{ settings.heading_font_size / 1.2 }}px";
-$heading_font_size_h3: "{{ settings.heading_font_size / 1.5 }}px";
-$heading_font_size_h4: "{{ settings.heading_font_size / 2 }}px";
-$heading_font_size_h5: "{{ settings.heading_font_size / 2.5 }}px";
-$heading_font_size_h6: "{{ settings.heading_font_size / 2.25 }}px";
+$heading_font_size: "{{ settings.heading_font_size ~ 'px'}}";
 $btn_color: "{{ settings.btn_color }}";
 $btn_color_hover: "{{ settings.btn_color_hover }}";
 $image_placeholder: "{{ 'placeholders/product-11.jpg' | global_img_url }}";
