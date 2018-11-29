@@ -584,7 +584,7 @@
               "type": "text",
               "id": "body_font_size",
               "label": "Tamaño",
-              "default": "14px"
+              "info": "Medida numérica. De 36 a 44 recomendados."
             },
             {
               "type": "select",

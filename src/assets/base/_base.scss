@@ -913,7 +913,22 @@ h6 {
   font-weight: $heading_font_weight;
 }
 h1 {
-  font-size: $heading_font_size;
+  font-size: $heading_font_size_h1;
+}
+h2 {
+  font-size: $heading_font_size_h2;
+}
+h3 {
+  font-size: $heading_font_size_h3;
+}
+h4 {
+  font-size: $heading_font_size_h4;
+}
+h5 {
+  font-size: $heading_font_size_h5;
+}
+h6 {
+  font-size: $heading_font_size_h6;
 }
 h1,
 h2,
