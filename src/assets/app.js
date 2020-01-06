@@ -1,11 +1,6 @@
 var win = $(window);
 
-$(document).ajaxStart(function(){
-$(document.body).css({'cursor':'wait'});
-$('body a').css({'pointer-events':'none'})})
-.ajaxStop(function(){
-$(document.body).css({'cursor':'default'});
-$('body a').css({'pointer-events':'auto'})}).ready(
+$(document).ready(
   function() {
   // Common functions
   var disabled = function() {
@@ -85,24 +80,18 @@ $('body a').css({'pointer-events':'auto'})}).ready(
   }
   // Init dropdown menu
   var initMenuDropdown = function() {
-    $("li.dropdown-submenu > a").on("click", function() {
-    $("li.dropdown-submenu").removeClass("open");
-    if (win >= 768) {
-      $('ul.main-menu_menu').mouseleave(function() {
-       $(this).hide();
+    $("li.main-menu_dropdown").on("click", function(event) {
+      event.stopPropagation();
+      $(this).toggleClass('active');
+      $(this).siblings().removeClass('active');
+    });
+    if (win > 767) {
+      $('.main-menu_menu').mouseleave(function() {
+       $(this).parent().removeClass('active');
       });
     }
-    if ($(this).parent("li.dropdown-submenu").hasClass("in-use")) {
-      $(this).parents("li.dropdown-submenu").addClass("open");
-      $(this).parent("li.dropdown-submenu").removeClass("open");
-      $(this).parent("li.dropdown-submenu").removeClass("in-use");
-      $(this).siblings('ul.dropdown-menu').children("li.dropdown-submenu").removeClass("open");
-      $(this).siblings('ul.dropdown-menu').children("li.dropdown-submenu").removeClass("in-use");
-    } else {
-      $(this).parents("li.dropdown-submenu").addClass("open");
-      $(this).parents("li.dropdown-submenu").addClass("in-use");
-    }
-      return false;
+    $(window).click(function() {
+      $("li.main-menu_dropdown").removeClass('active');
     });
   }
 
@@ -116,34 +105,7 @@ $('body a').css({'pointer-events':'auto'})}).ready(
     $('.collection__item--rectangle--full').css({ 'height': rectanglefull * .52 })
   }
   getWidth('.collection__item--square','.collection__item--rectangle', '.collection__item--rectangle--full');
-  // Init dropdown menu
-  var initMultiMenu = function() {
-    $('.topnav-menu a.multi').on('click', function(e) {
-      $(this).next('.main-menu_menu').toggle();
-      $(this).find('.fa').toggleClass('fa-caret-right fa-caret-down');
-      $('.topnav-menu a.multi').not(this).find('.fa').removeClass('fa-caret-down').addClass('fa-caret-right');
-      $(this).parent().siblings().find('.main-menu_menu').hide();
-      $(this).siblings().children('.main-menu_menu').hide();
-      e.stopPropagation();
-      e.preventDefault();
-    });
-    if (win.width() >= 768) {
-      $('body').on('click', function() {
-        $('.topnav-menu .fa').removeClass('fa-caret-down').addClass('fa-caret-right');
-        $('ul.main-menu_menu').hide();
-      });
-      $('.topnav-menu a.multi .main-menu_menu').on('mouseleave', function(e) {
-        $(this).parent().find('.main-menu_menu').stop(true,false,true).css('display', 'none');
-        $('.topnav-menu .fa').removeClass('fa-caret-down').addClass('fa-caret-right');
-        e.stopPropagation();
-        e.preventDefault();
-      });
-      $('ul.main-menu_menu').mouseleave(function() {
-        $('.topnav-menu .fa').removeClass('fa-caret-down').addClass('fa-caret-right');
-        $(this).hide();
-      });
-    }
-  }
+
   var getUrlParameter = function() {
     // TODO get orderby params
     var _url = decodeURIComponent(window.location.search.substring(1));
@@ -333,7 +295,6 @@ $('body a').css({'pointer-events':'auto'})}).ready(
     // Load when windows is full loaded
     getProductHeight();
     initMenuDropdown();
-    initMultiMenu();
     // Remove admin bar if exist
     var $adminBar = $('#admin-bar-iframe');
     if ($adminBar.length) {
@@ -345,11 +306,6 @@ $('body a').css({'pointer-events':'auto'})}).ready(
     getProductHeight();
     setBodyPaddingTop();
     initMenuDropdown();
-  })
-  .scroll(function() {
-    // Load when windows is scrolled
-  }).click(function() {
-    $('ul.main-menu_menu' ).css({"display": "none"});
   });
   win.on("load resize",function(e){
     // Load when window is loaded or resize
