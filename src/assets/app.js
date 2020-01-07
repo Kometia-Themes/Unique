@@ -289,12 +289,11 @@ $(document).ready(
     hideAjaxCart(true);
   });
   // End ajax component
-
+  initMenuDropdown();
 
   win.on('load', function() {
     // Load when windows is full loaded
     getProductHeight();
-    initMenuDropdown();
     // Remove admin bar if exist
     var $adminBar = $('#admin-bar-iframe');
     if ($adminBar.length) {
