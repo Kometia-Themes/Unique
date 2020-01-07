@@ -633,7 +633,6 @@ a.multi:hover {
 .main-menu_dropdown a.multi {
   color: $main_menu_dropdown_links;
   background-color: $main_menu_dropdown_bg;
-  pointer-events: none !important;
 }
 .main-menu_dropdown .main-menu_menu .main-menu__item a.main-menu__link:hover,
 .main-menu_dropdown .main-menu_menu .main-menu__item a.main-menu__link:focus,
