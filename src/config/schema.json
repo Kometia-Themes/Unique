@@ -185,7 +185,7 @@
           "settings": [
             {
               "type": "color",
-              "id": "headings_color",
+              "id": "heading_font_color",
               "label": "Títulos",
               "default": "#161616"
             },
@@ -1325,10 +1325,6 @@
                   "label": "Blog"
                 },
                 {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
-                },
-                {
                   "value": "featured-video",
                   "label": "Video"
                 }
@@ -1363,10 +1359,6 @@
                 {
                   "value": "featured-blog",
                   "label": "Blog"
-                },
-                {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
                 },
                 {
                   "value": "featured-video",
@@ -1405,10 +1397,6 @@
                   "label": "Blog"
                 },
                 {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
-                },
-                {
                   "value": "featured-video",
                   "label": "Video"
                 }
@@ -1443,10 +1431,6 @@
                 {
                   "value": "featured-blog",
                   "label": "Blog"
-                },
-                {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
                 },
                 {
                   "value": "featured-video",
@@ -1485,10 +1469,6 @@
                   "label": "Blog"
                 },
                 {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
-                },
-                {
                   "value": "featured-video",
                   "label": "Video"
                 }
@@ -1498,46 +1478,6 @@
               "type": "select",
               "id": "frontpage_section_6",
               "label": "Sección 6",
-              "default": "featured-instagram",
-              "options": [
-                {
-                  "value": "none",
-                  "label": "Ningúno"
-                },
-                {
-                  "value": "featured-slider",
-                  "label": "Slider"
-                },
-                {
-                  "value": "featured-collections",
-                  "label": "Colecciones destacadas"
-                },
-                {
-                  "value": "featured-products",
-                  "label": "Productos destacados"
-                },
-                {
-                  "value": "featured-banner",
-                  "label": "Banner"
-                },
-                {
-                  "value": "featured-blog",
-                  "label": "Blog"
-                },
-                {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
-                },
-                {
-                  "value": "featured-video",
-                  "label": "Video"
-                }
-              ]
-            },
-            {
-              "type": "select",
-              "id": "frontpage_section_7",
-              "label": "Sección 7",
               "default": "featured-video",
               "options": [
                 {
@@ -1563,10 +1503,6 @@
                 {
                   "value": "featured-blog",
                   "label": "Blog"
-                },
-                {
-                  "value": "featured-instagram",
-                  "label": "Galería Instagram"
                 },
                 {
                   "value": "featured-video",
@@ -1830,8 +1766,7 @@
             {
               "type": "color",
               "id": "slider_arrow_color",
-              "label": "Color de las flechas",
-              "default": "rgba(255,255,255,.45);"
+              "label": "Color de las flechas"
             },
             {
               "type": "checkbox",
@@ -1928,12 +1863,6 @@
           "header": "Productos Destacados",
           "settings": [
             {
-              "type": "checkbox",
-              "id": "enable_share_products",
-              "default": true,
-              "label": "Compartir en redes sociales"
-            },
-            {
               "type": "text",
               "id": "featured_products_title",
               "label": "Título de Productos Destacados",
@@ -2028,35 +1957,6 @@
               "id": "featured_blog_limit",
               "label": "Cantidad de posts a mostrar",
               "default": "3"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Página de Inicio - Instagram",
-      "icon": "home-page",
-      "sections": [
-        {
-          "settings": [
-            {
-              "type": "paragraph",
-              "content": "Esta configuración requiere de conocimientos avanzados, cualquier duda contacta al equipo de Kometia"
-            },
-            {
-              "type": "text",
-              "id": "instagram_title",
-              "label": "Título de sección"
-            },
-            {
-              "type": "text",
-              "id": "instagram_id",
-              "label": "Id de usuario"
-            },
-            {
-              "type": "text",
-              "id": "instagram_token",
-              "label": "Token de sesión"
             }
           ]
         }
