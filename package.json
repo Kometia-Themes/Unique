@@ -53,7 +53,7 @@
     "livereload": "^0.6.2",
     "match-media": "^0.2.0",
     "modernizr": "^3.5.0",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.13.1",
     "on-build-webpack": "^0.1.0",
     "owl-carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git",
     "photoswipe": "^4.1.2",
